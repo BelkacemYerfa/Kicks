@@ -2,6 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+/*Css bg animation */
+#ImageBg {
+  background-image: url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80");
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  animation: animatebg 10s linear infinite alternate;
+}
+
+@keyframes animatebg {
+  0% {
+    background-position: 36% 42%;
+    background-size: 100%;
+  }
+
+  20% {
+    background-position: 30% 35%;
+    background-size: 100%;
+  }
+
+  20.0001% {
+    /* -- View 2 -- */
+    background-position: 60% 85%;
+    background-size: 200%;
+  }
+
+  40% {
+    background-position: 49% 81%;
+    background-size: 200%;
+  }
+
+  40.0001% {
+    /* -- View 3 -- */
+    background-position: 80% 42%;
+    background-size: 140%;
+  }
+
+  60% {
+    background-position: 84% 33%;
+    background-size: 140%;
+  }
+
+  60.0001% {
+    /* -- View 4 -- */
+    background-position: 0% 0%;
+    background-size: 140%;
+  }
+
+  80% {
+    background-position: 15% 4%;
+    background-size: 140%;
+  }
+
+  80.0001% {
+    /* -- View 5 -- */
+    background-position: 80% 10%;
+    background-size: 140%;
+  }
+
+  100% {
+    background-position: 72% 14%;
+    background-size: 140%;
+  }
+}
+
+/*Css scrollbar */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4a69e2;
+  border-radius: 3.5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fafafa;
+}
+
 @layer {
   .NavBtns {
     @apply cursor-pointer p-2 duration-300 ease-in-out hover:bg-PannelBtn hover:text-white w-full rounded-lg;

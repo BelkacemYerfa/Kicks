@@ -1,10 +1,13 @@
 export const MainSection = () => {
   return (
     <section className="">
-      <h2 className="text-center uppercase text-ViewDetails text-[60px] md:text-[223px] font-bold ">
+      <h2 className="text-center uppercase text-ViewDetails duration-300 ease-in-out text-[60px] sm:text-[100px] md:text-[223px] font-bold ">
         Do It <span className="text-ShopBtn">right</span>
       </h2>
-      <div className="relative flex flex-col justify-center rounded-[64px] bg-url h-[70vh] md:h-[90vh] bg-center bg-no-repeat bg-cover ">
+      <div
+        className="relative flex flex-col justify-center rounded-[64px] h-[70vh] sm:h-[90vh]  "
+        id="ImageBg"
+      >
         <div className="relative flex items-end h-full ">
           <button className="absolute p-6 w-[40px] h-fit rounded-br-2xl rounded-tr-2xl bg-ViewDetails text-FooterTitle text-base font-semibold ">
             <p className="flex items-center justify-center -rotate-90">
