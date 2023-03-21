@@ -12,14 +12,14 @@ export const ProductCategory = ({
     <div className={`relative h-full w-full `} id={productId}>
       <img
         src={`${productImg}`}
-        className={`w-full h-[600px] ${
+        className={`w-full h-[348px] md:h-[600px] ${
           index % 2 === 0 ? "rounded-none" : "rounded-tl-[4rem]"
         }`}
         alt={productName}
       />
       <div className="absolute bottom-4 flex items-center justify-center w-full">
         <div className="flex items-center justify-between min-w-[80%]">
-          <p className="text-ViewDetails font-semibold text-[36px] w-[40%]">
+          <p className="text-ViewDetails font-semibold text-[24px] md:text-[36px] md:w-[40%]">
             {productName}
           </p>
           <Link

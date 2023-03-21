@@ -8,8 +8,8 @@ export const CategorySection = () => {
   let index = 0;
   return (
     <section className="bg-ViewDetails pt-4 w-full ">
-      <div className="flex items-center justify-between px-[80px]">
-        <h2 className="uppercase text-white text-[74px] font-semibold">
+      <div className="flex items-center justify-between px-4 md:px-[80px]">
+        <h2 className="md:uppercase text-white text-[24px] md:text-[74px] font-semibold">
           Categories
         </h2>
         <div className="flex items-center gap-x-4">
@@ -21,7 +21,7 @@ export const CategorySection = () => {
           </div>
         </div>
       </div>
-      <div className="pl-[80px] flex items-center h-full w-full">
+      <div className="mt-6 md:mt-0 pl-4 md:pl-[80px] flex flex-col md:flex-row items-center h-full w-full">
         {ProductCat.map((product) => {
           index += 1;
           return (

@@ -1,11 +1,11 @@
 export const ProductCard = () => {
   return (
-    <div className="flex flex-col gap-y-3 w-[48%] md:w-[24%]">
+    <div className="flex flex-col gap-y-3 w-[45%] md:w-[24%]">
       <div className=" p-2 bg-white rounded-[28px] first-letter">
         <div className="relative">
           <div
             className=" absolute left-0 top-0 bg-ShopBtn text-white text-xs font-semibold 
-          rounded-tl-3xl rounded-br-3xl w-[58px] h-[38px] flex items-center justify-center "
+            rounded-tl-3xl rounded-br-3xl w-[58px] h-[38px] flex items-center justify-center "
           >
             New
           </div>
