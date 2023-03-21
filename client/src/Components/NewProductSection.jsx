@@ -1,3 +1,5 @@
+import { ProductCard } from "./ProductCard";
+
 export const NewProductSection = () => {
   return (
     <section className="">
@@ -8,6 +10,12 @@ export const NewProductSection = () => {
         <button className="uppercase translate-y-0 md:-translate-y-[30px] bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg">
           Shop new drops
         </button>
+      </div>
+      <div className="flex items-center md:justify-center flex-wrap gap-x-4 gap-y-4 md:gap-y-6">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </div>
     </section>
   );
