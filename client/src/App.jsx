@@ -7,8 +7,8 @@ import { Home } from "./Pages/Home";
 
 export default function App() {
   return (
-    <div className="font-Rubik flex items-center justify-center bg-BgWebsite min-h-screen w-full ">
-      <div className="w-[95%] md:w-[95%] py-[1rem] md:py-[2rem]">
+    <div className="font-Rubik bg-BgWebsite min-h-screen w-full ">
+      <div className=" flex flex-col items-center justify-center py-[1rem] md:py-[2rem]">
         <Router>
           <Navigationbar />
           <Routes>

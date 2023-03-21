@@ -1,6 +1,6 @@
 export const ProductCard = () => {
   return (
-    <div className="flex flex-col gap-y-4 w-[48%] md:w-[24%]">
+    <div className="flex flex-col gap-y-3 w-[48%] md:w-[24%]">
       <div className=" p-2 bg-white rounded-[28px] first-letter">
         <div className="relative">
           <div
@@ -11,7 +11,7 @@ export const ProductCard = () => {
           </div>
           <img
             src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
-            className="rounded-3xl w-full md:h-[330px] h-[164px]"
+            className="rounded-3xl w-full md:h-[300px] h-[164px]"
             alt="Product Name"
           />
         </div>
