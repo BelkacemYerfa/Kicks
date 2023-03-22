@@ -12,12 +12,16 @@ import "swiper/css/scrollbar";
 
 export const CategorySection = () => {
   const swiperRef = useRef(null);
-  const [SwiperPreview, setSwiperPreview] = useState(false);
+  const [slides, setSlides] = useState(0);
+  const setSlidesPerview = () => {
+    setSlides(window.innerWidth <= 550 ? 1 : window.innerWidth > 720 ? 2 : 0);
+  };
   useEffect(() => {
-    console.log(SwiperPreview);
-    mediaPhone.addEventListener("change", () => {
-      setSwiperPreview(!SwiperPreview);
-    });
+    setSlidesPerview();
+    window.addEventListener("resize", setSlidesPerview);
+    return () => {
+      window.removeEventListener("resize", setSlidesPerview);
+    };
   }, []);
   return (
     <section className="bg-ViewDetails pt-4 w-full ">
@@ -51,7 +55,7 @@ export const CategorySection = () => {
         <div className="flex items-center h-full w-full rounded-tl-[4rem] overflow-hidden">
           <Swiper
             // install Swiper modules
-            slidesPerView={2}
+            slidesPerView={slides}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
