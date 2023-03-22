@@ -10,6 +10,7 @@ export const Home = () => {
         <NewProductSection />
         <br />
       </section>
+      <br />
       <CategorySection />
     </>
   );

@@ -6,15 +6,12 @@ export const ProductCategory = ({
   productName,
   productImg,
   productRedirect,
-  index,
 }) => {
   return (
     <div className={`relative h-full w-full `} id={productId}>
       <img
         src={`${productImg}`}
-        className={`w-full h-[348px] md:h-[600px] ${
-          index % 2 === 0 ? "rounded-none" : "rounded-tl-[4rem]"
-        }`}
+        className={`w-full h-[348px] md:h-[600px] `}
         alt={productName}
       />
       <div className="absolute bottom-4 flex items-center justify-center w-full">
