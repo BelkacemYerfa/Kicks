@@ -8,7 +8,7 @@ export const ProductCategory = ({
   productRedirect,
 }) => {
   return (
-    <div className={`relative h-full w-full `} id={productId}>
+    <div className={`relative h-full md:w-full `} id={productId}>
       <img
         src={`${productImg}`}
         className={`w-full h-[348px] md:h-[600px] `}

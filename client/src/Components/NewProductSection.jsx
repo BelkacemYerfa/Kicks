@@ -11,7 +11,7 @@ export const NewProductSection = () => {
           Shop new drops
         </button>
       </div>
-      <div className="flex items-center md:justify-center flex-wrap gap-x-4 gap-y-4 md:gap-y-6">
+      <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-4 md:gap-y-6">
         <ProductCard />
         <ProductCard />
         <ProductCard />

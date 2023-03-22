@@ -17,10 +17,14 @@ export const ProductCard = () => {
         </div>
       </div>
       <div className="flex flex-col gap-y-4">
-        <p className="text-xl font-semibold text-ViewDetails">
+        <p className="px-1 text-xl font-semibold text-ViewDetails">
           ADIDAS 4DFWD X PARLEY RUNNING SHOES
         </p>
-        <button className="Uppercase text-sm font-medium bg-ViewDetails text-white px-2 py-4 rounded-lg">
+        <button
+          className="Uppercase text-sm font-medium bg-ViewDetails
+           text-white px-2 py-4 rounded-lg
+           duration-300 ease-in-out"
+        >
           View Product - <span className="text-PannelBtn">$125</span>
         </button>
       </div>
