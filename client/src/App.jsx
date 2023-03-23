@@ -1,9 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./App.css";
+import { Footer } from "./Components/Footer";
 import { Navigationbar } from "./Components/Navigationbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./Pages/Home";
+import "./App.css";
 
 export default function App() {
   return (
@@ -14,6 +15,13 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>
+          <section className="w-[95%]">
+            <br />
+            <br />
+            <br />
+            <Footer />
+            <center>Maded By Me</center>
+          </section>
         </Router>
       </div>
     </div>

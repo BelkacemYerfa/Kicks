@@ -1,4 +1,5 @@
 import { CategorySection } from "../Components/CategorySection";
+import { Footer } from "../Components/Footer";
 import { MainSection } from "../Components/MainSection";
 import { NewProductSection } from "../Components/NewProductSection";
 import { Reviews } from "../Components/Reviews";

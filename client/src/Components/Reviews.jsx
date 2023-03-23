@@ -25,7 +25,7 @@ export const Reviews = () => {
   return (
     <section className="">
       <div className="flex items-center justify-between">
-        <h2 className="text-[24px] md:text-[74px] text-ViewDetails font-semibold ">
+        <h2 className="uppercase text-[24px] md:text-[74px] text-ViewDetails font-semibold ">
           Reviews
         </h2>
         <button className="uppercase translate-y-0 bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg ">
