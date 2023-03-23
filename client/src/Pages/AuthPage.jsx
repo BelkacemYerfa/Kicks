@@ -1,9 +1,11 @@
 import { Auth } from "../Components/auth/Auth";
 
-export const Login = () => {
+const AuthPage = () => {
   return (
-    <section className="w-[95%]">
+    <section className="w-[95%] 2xl:w-[85vw]">
       <Auth />
     </section>
   );
 };
+
+export default AuthPage;

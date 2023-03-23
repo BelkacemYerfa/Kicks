@@ -23,7 +23,7 @@ export const CategorySection = () => {
     };
   }, []);
   return (
-    <section className="bg-ViewDetails pt-4 w-full ">
+    <section className="bg-ViewDetails pt-4 w-full rounded-none 2xl:rounded-[2rem]">
       <div className="flex items-center justify-between px-4 md:px-[80px]">
         <h2 className="md:uppercase text-white text-[24px] md:text-[74px] font-semibold">
           Categories
