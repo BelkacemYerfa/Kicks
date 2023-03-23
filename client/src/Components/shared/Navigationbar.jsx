@@ -1,14 +1,15 @@
-import logo from "../assets/userlogo.svg";
-import searchLogo from "../assets/searchLogo.svg";
-import toggle from "../assets/toggle.svg";
+import logo from "../../assets/userlogo.svg";
+import searchLogo from "../../assets/searchLogo.svg";
+import toggle from "../../assets/toggle.svg";
 import { useEffect, useState, useRef } from "react";
 import { ChoiceDropDown } from "./NavComponents/ChoiceDropDown";
-import { mediaPhone } from "../static/mediaQueries";
-import dropSvg from "../assets/dropdonw.svg";
+import { mediaPhone } from "../../static/mediaQueries";
+import dropSvg from "../../assets/dropdonw.svg";
 import { motion } from "framer-motion";
 
 export const Navigationbar = () => {
   const [Toggle, setToggle] = useState(false);
+  const [SearchToggle, setSearchToggle] = useState(false);
   const ToggleDrop = useRef(null);
   const handleToggleState = () => {
     setToggle(!Toggle);
@@ -29,7 +30,7 @@ export const Navigationbar = () => {
             className="md:hidden cursor-pointer flex items-center justify-center h-10 w-10"
             onClick={handleToggleState}
           >
-            <img src={toggle} alt="toggle" />
+            <img src={toggle} className="h-10 w-10" alt="toggle" />
           </div>
           <ul className="absolute md:relative hidden md:flex items-center flex-col gap-y-3 md:flex-row gap-x-10 m-0">
             <li>
@@ -67,7 +68,7 @@ export const Navigationbar = () => {
             </li>
           </ul>
         </div>
-        <div className="SvgLogo">
+        <div className="duration-300 ease-in-out">
           <motion.svg
             width="128"
             height="32"
@@ -138,9 +139,30 @@ export const Navigationbar = () => {
           </motion.svg>
         </div>
         <div className="flex items-center gap-x-[9px] md:gap-x-10">
-          <button className="hidden md:flex cursor-pointer items-center justify-center h-10 w-10">
-            <img src={searchLogo} className="h-8 w-8" alt="search logo" />
-          </button>
+          <div className="flex items-center gap-x-2">
+            <form action="">
+              <input
+                type="search"
+                name="Search"
+                id="Search"
+                placeholder="Search..."
+                className={`flex justify-end bg-transparent text-ViewDetails text-2xl font-medium px-3 py-2 
+              rounded-lg duration-300 ease-in-out outline-none  ${
+                SearchToggle
+                  ? "outline outline-FooterTitle w-full"
+                  : "w-0 border-none "
+              }`}
+              />
+            </form>
+            <button
+              className="hidden md:flex cursor-pointer items-center justify-center h-10 w-10"
+              onClick={() => {
+                setSearchToggle(!SearchToggle);
+              }}
+            >
+              <img src={searchLogo} className="h-8 w-8" alt="search logo" />
+            </button>
+          </div>
           <div className="cursor-pointer flex items-center justify-center h-10 w-10">
             <img src={logo} className="h-8 w-8" alt="account logo" />
           </div>

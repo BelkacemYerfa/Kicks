@@ -94,7 +94,7 @@ export const Footer = () => {
             <h2 className="text-[36px] text-PannelBtn font-semibold ">
               Follow Us
             </h2>
-            <ul className="flex gap-x-3 p-0">
+            <ul className="flex items-center gap-x-5 p-0">
               <li>
                 <svg
                   width="24"

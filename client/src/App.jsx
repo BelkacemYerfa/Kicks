@@ -1,10 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Footer } from "./Components/Footer";
-import { Navigationbar } from "./Components/Navigationbar";
+import { Footer } from "./Components/shared/Footer";
+import { Navigationbar } from "./Components/shared/Navigationbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import "./App.css";
+import { Auth } from "./Components/auth/Auth";
 
 export default function App() {
   return (
@@ -12,8 +13,10 @@ export default function App() {
       <div className=" flex flex-col items-center justify-center py-[1rem] md:py-[2rem]">
         <Router>
           <Navigationbar />
+          <br />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
           <section className="w-[95%]">
             <br />

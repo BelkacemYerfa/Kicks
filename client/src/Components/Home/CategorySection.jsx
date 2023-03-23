@@ -1,10 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import lArrow from "../assets/leftArrow.svg";
-import rArrow from "../assets/rightArrow.svg";
+import lArrow from "../../assets/leftArrow.svg";
+import rArrow from "../../assets/rightArrow.svg";
 import { ProductCategory } from "./ProductCategory";
-import { ProductCat } from "../static/ProductCat";
+import { ProductCat } from "../../static/ProductCat";
 import { useEffect, useRef, useState } from "react";
-import { mediaPhone } from "../static/mediaQueries";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

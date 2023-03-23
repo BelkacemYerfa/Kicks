@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import redirectArrow from "../assets/redirectArrow.svg";
+import redirectArrow from "../../assets/redirectArrow.svg";
 
 export const ProductCategory = ({
   productId,

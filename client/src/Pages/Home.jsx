@@ -1,8 +1,7 @@
-import { CategorySection } from "../Components/CategorySection";
-import { Footer } from "../Components/Footer";
-import { MainSection } from "../Components/MainSection";
-import { NewProductSection } from "../Components/NewProductSection";
-import { Reviews } from "../Components/Reviews";
+import { CategorySection } from "../Components/Home/CategorySection";
+import { MainSection } from "../Components/Home/MainSection";
+import { NewProductSection } from "../Components/Home/NewProductSection";
+import { Reviews } from "../Components/Home/Reviews";
 export const Home = () => {
   return (
     <>
