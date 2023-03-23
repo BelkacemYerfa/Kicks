@@ -1,4 +1,4 @@
-export const SignUp = () => {
+const SignUp = () => {
   return (
     <div className=" flex flex-col gap-y-3 md:px-10 w-full ">
       <h2 className="text-ViewDetails text-[32px] font-semibold">Register</h2>
@@ -175,3 +175,5 @@ export const SignUp = () => {
     </div>
   );
 };
+
+export default SignUp;

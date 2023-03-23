@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { ChoiceDropDown } from "./NavComponents/ChoiceDropDown";
 import { mediaPhone } from "../../static/mediaQueries";
 import dropSvg from "../../assets/dropdonw.svg";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export const Navigationbar = () => {
@@ -20,10 +21,7 @@ export const Navigationbar = () => {
     });
   }, []);
   return (
-    <nav
-      className="flex items-center duration-300 ease-in-out justify-center w-full
-       "
-    >
+    <nav className="flex items-center duration-300 ease-in-out justify-center w-full">
       <div className="w-[95%] flex items-center justify-between bg-white rounded-t-3xl md:rounded-3xl p-4 md:p-8">
         <div className=" relative flex items-center gap-x-10 font-semibold text-ViewDetails ">
           <div
@@ -163,9 +161,12 @@ export const Navigationbar = () => {
               <img src={searchLogo} className="h-8 w-8" alt="search logo" />
             </button>
           </div>
-          <div className="cursor-pointer flex items-center justify-center h-10 w-10">
+          <Link
+            to={"/auth"}
+            className="cursor-pointer flex items-center justify-center h-10 w-10"
+          >
             <img src={logo} className="h-8 w-8" alt="account logo" />
-          </div>
+          </Link>
           <div className="cursor-pointer bg-PannelBtn w-8 h-8 rounded-full flex items-center justify-center ">
             0
           </div>

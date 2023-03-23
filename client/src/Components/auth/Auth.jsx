@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { lazy, useState, useTransition } from "react";
 import { Login } from "./LogIn/Login";
-import { SignUp } from "./SignIn/SignUp";
+const SignUp = lazy(() => import("./SignIn/SignUp"));
 
 export const Auth = () => {
   const [LogForm, setLogForm] = useState(false);
+  const [, startTransition] = useTransition();
+
   const handleToggleState = () => {
-    setLogForm(!LogForm);
+    startTransition(() => {
+      setLogForm(!LogForm);
+    });
   };
   return (
     <div className="w-[95%] flex flex-col md:flex-row gap-y-6 md:justify-between">
       <div className="w-full md:w-1/2">
-        {LogForm ? (
+        {!LogForm ? (
           <>
             <Login />
             <br />
@@ -32,7 +36,7 @@ export const Auth = () => {
           </>
         )}
       </div>
-      <div className="bg-white py-6 px-4 md:px-6 rounded-2xl w-full md:w-1/2 ">
+      <div className="bg-white py-6 px-4 md:px-6 rounded-2xl w-full md:w-1/2 h-fit">
         <div className="text-ViewDetails">
           <h2 className="text-[36px] font-semibold ">
             Join Kicks Club Get Rewarded Today.

@@ -15,7 +15,7 @@ export const Footer = () => {
               name="Email"
               id="Email"
               placeholder="Email Address"
-              className="text-white text-xl outline-none w-1/2 bg-transparent rounded-lg py-3 px-3 border border-solid border-white"
+              className="text-white text-xl outline-none w-1/2 bg-transparent rounded-lg py-3 px-3 border border-solid border-white placeholder:text-FooterTitle"
             />
             <button
               type="submit"
