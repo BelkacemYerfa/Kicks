@@ -1,9 +1,22 @@
+import { motion } from "framer-motion";
+
 export const MainSection = () => {
   return (
     <section className="">
-      <h2 className="text-center uppercase text-ViewDetails duration-300 ease-in-out text-[60px] sm:text-[100px] md:text-[223px] font-bold ">
-        Do It <span className="text-ShopBtn">right</span>
-      </h2>
+      <motion.h2
+        initial={{
+          y: "100%",
+        }}
+        whileInView={{
+          y: 0,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        className=" text-center uppercase text-ViewDetails duration-300 ease-in-out text-[60px] sm:text-[100px] md:text-[223px] font-bold "
+      >
+        Do It <span className="text-ShopBtn cursor-pointer">right</span>
+      </motion.h2>
       <div
         className="relative flex flex-col justify-center rounded-[64px] h-[70vh] sm:h-[90vh]  "
         id="ImageBg"
@@ -31,8 +44,26 @@ export const MainSection = () => {
             {
               //Image Holder to be showed in the bg
             }
-            <div className="cursor-pointer rounded-lg md:rounded-[32px] border-solid border md:border-[3px] border-FooterTitle h-[4rem] w-[4rem] md:h-[10rem] md:w-[10rem] bg-url bg-center bg-no-repeat bg-cover "></div>
-            <div className="cursor-pointer rounded-lg md:rounded-[32px] border-solid border md:border-[3px] border-FooterTitle h-[4rem] w-[4rem] md:h-[10rem] md:w-[10rem] bg-url bg-center bg-no-repeat bg-cover "></div>
+            <motion.div
+              drag
+              dragConstraints={{
+                top: -100,
+                left: -500,
+                bottom: 0,
+                right: 0,
+              }}
+              className="cursor-pointer rounded-lg md:rounded-[32px] border-solid border md:border-[3px] border-FooterTitle h-[4rem] w-[4rem] md:h-[10rem] md:w-[10rem] bg-url bg-center bg-no-repeat bg-cover "
+            ></motion.div>
+            <motion.div
+              drag
+              dragConstraints={{
+                top: -100,
+                left: -500,
+                bottom: 0,
+                right: 0,
+              }}
+              className="cursor-pointer rounded-lg md:rounded-[32px] border-solid border md:border-[3px] border-FooterTitle h-[4rem] w-[4rem] md:h-[10rem] md:w-[10rem] bg-url bg-center bg-no-repeat bg-cover "
+            ></motion.div>
           </div>
         </div>
       </div>

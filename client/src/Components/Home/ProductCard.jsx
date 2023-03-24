@@ -1,8 +1,18 @@
+import { motion } from "framer-motion";
 export const ProductCard = () => {
   return (
     <div className="flex flex-col gap-y-3 w-[45%] md:w-[24%]">
-      <div className=" p-2 bg-white rounded-[28px] first-letter">
-        <div className="relative">
+      <div className="p-2 bg-white rounded-[28px] first-letter">
+        <motion.div
+          drag
+          dragConstraints={{
+            top: 8,
+            right: 8,
+            bottom: -8,
+            left: -8,
+          }}
+          className="relative"
+        >
           <div
             className=" absolute left-0 top-0 bg-ShopBtn text-white text-xs font-semibold 
             rounded-tl-3xl rounded-br-3xl w-[58px] h-[38px] flex items-center justify-center "
@@ -14,7 +24,7 @@ export const ProductCard = () => {
             className="rounded-3xl w-full md:h-[300px] h-[164px]"
             alt="Product Name"
           />
-        </div>
+        </motion.div>
       </div>
       <div className="flex flex-col gap-y-4">
         <p className="px-1 text-xl font-semibold text-ViewDetails">

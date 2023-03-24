@@ -12,12 +12,20 @@ export const Navigationbar = () => {
   const [Toggle, setToggle] = useState(false);
   const [SearchToggle, setSearchToggle] = useState(false);
   const ToggleDrop = useRef(null);
+  const SearchToggleRef = useRef(null);
   const handleToggleState = () => {
     setToggle(!Toggle);
   };
   useEffect(() => {
     mediaPhone.addEventListener("change", () => {
       setToggle(false);
+    });
+    window.addEventListener("click", (e) => {
+      if (!SearchToggleRef.current.contains(e.target)) {
+        setSearchToggle(false);
+      } else {
+        setSearchToggle(true);
+      }
     });
   }, []);
   return (
@@ -140,6 +148,7 @@ export const Navigationbar = () => {
           <div className="flex items-center gap-x-2">
             <form action="">
               <input
+                ref={SearchToggleRef}
                 type="search"
                 name="Search"
                 id="Search"
@@ -147,7 +156,7 @@ export const Navigationbar = () => {
                 className={`flex justify-end bg-transparent text-ViewDetails text-2xl font-medium px-3 py-2 
               rounded-lg duration-300 ease-in-out outline-none  ${
                 SearchToggle
-                  ? "outline outline-FooterTitle w-full"
+                  ? "border border-solid border-FooterTitle w-full"
                   : "w-0 border-none "
               }`}
               />

@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const Home = lazy(() => import("./Pages/Home"));
 const AuthPage = lazy(() => import("./Pages/AuthPage"));
 import "./App.css";
-
+/* import { FramerTest } from "./Pages/FramerTest";
+ */
 export default function App() {
   return (
     <div className="font-Rubik bg-BgWebsite min-h-screen w-full ">
@@ -18,6 +19,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/auth" element={<AuthPage />} />
+              {/*  <Route path="/Test" element={<FramerTest />} /> */}
             </Routes>
             <section className="w-[95%] 2xl:w-[85vw]">
               <br />
