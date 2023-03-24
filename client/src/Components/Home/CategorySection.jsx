@@ -4,6 +4,8 @@ import rArrow from "../../assets/rightArrow.svg";
 import { ProductCategory } from "./ProductCategory";
 import { ProductCat } from "../../static/ProductCat";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ParentVaraiants } from "../../static/motionVariant";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,9 +27,14 @@ export const CategorySection = () => {
   return (
     <section className="bg-ViewDetails pt-4 w-full rounded-none 2xl:rounded-[2rem]">
       <div className="flex items-center justify-between px-4 md:px-[80px]">
-        <h2 className="md:uppercase text-white text-[24px] md:text-[74px] font-semibold">
+        <motion.h2
+          variants={ParentVaraiants}
+          initial="hidden"
+          whileInView="visible"
+          className="md:uppercase text-white text-[24px] md:text-[74px] font-semibold"
+        >
           Categories
-        </h2>
+        </motion.h2>
         <div className="flex items-center gap-x-4">
           <div
             className={`h-10 w-10 flex items-center justify-center bg-FooterTitle rounded-lg cursor-pointer

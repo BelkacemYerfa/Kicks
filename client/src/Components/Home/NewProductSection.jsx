@@ -1,48 +1,20 @@
 import { ProductCard } from "./ProductCard";
 import { motion } from "framer-motion";
+import { ParentVaraiants } from "../../static/motionVariant";
 
 export const NewProductSection = () => {
   const Text = "Don't Miss Out New Drops";
-  const words = Text.split(" ");
-  const ParentVaraiants = {
-    hidden: {
-      y: 10,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 4,
-        when: "beforeChildren",
-      },
-    },
-  };
-  const ChildVariants = {
-    hidden: {
-      y: 200,
-    },
-    visible: {
-      y: 0,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+
   return (
     <section className="">
       <div className="relative flex items-center md:items-end justify-between ">
         <motion.h3
           variants={ParentVaraiants}
-          animate="visible"
           initial="hidden"
+          whileInView="visible"
           className="md:uppercase text-[24px] md:text-[74px] w-[50%] text-ViewDetails font-semibold "
         >
-          {words.map((value, index) => (
-            <motion.span key={index} variants={ChildVariants}>
-              {value + " "}
-            </motion.span>
-          ))}
+          {Text}
         </motion.h3>
         <button className="uppercase translate-y-0 md:-translate-y-[30px] bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg">
           Shop new drops

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ReviewCard } from "./ReviewCard";
+import { motion } from "framer-motion";
+import { ParentVaraiants } from "../../static/motionVariant";
 
 export const Reviews = () => {
   const [slides, setSlides] = useState(0);
@@ -25,9 +27,14 @@ export const Reviews = () => {
   return (
     <section className="">
       <div className="flex items-center justify-between">
-        <h2 className="uppercase text-[24px] md:text-[74px] text-ViewDetails font-semibold ">
+        <motion.h2
+          variants={ParentVaraiants}
+          initial="hidden"
+          whileInView="visible"
+          className="uppercase text-[24px] md:text-[74px] text-ViewDetails font-semibold "
+        >
           Reviews
-        </h2>
+        </motion.h2>
         <button className="uppercase translate-y-0 bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg ">
           See All
         </button>
