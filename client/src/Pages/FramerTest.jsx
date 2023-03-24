@@ -67,3 +67,5 @@ export const FramerTest = () => {
     </div>
   );
 };
+
+//This part is a mini demo for anyone wanna learn about framer-motion
