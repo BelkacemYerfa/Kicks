@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className="realtive">
       <section className="pt-6 px-4 pb-16 md:px-[72px] md:py-16 bg-ShopBtn rounded-t-[2rem] md:rounded-t-[3rem] flex flex-col gap-y-8 md:flex-row items-start md:items-center justify-between w-full">
-        <div className="flex flex-col gap-y-4  justify-center w-full">
+        <div className="flex flex-col gap-y-4 justify-center w-full md:w-[150%]">
           <h2 className="uppercase text-[32px] md:text-[48px] font-semibold text-white w-full md:w-[70%]">
             Join our KicksPlus Club & get 15% off
           </h2>
@@ -27,7 +27,7 @@ export const Footer = () => {
             </button>
           </form>
         </div>
-        <div className="svgHolder">
+        <div className="w-full">
           <motion.svg
             initial={{
               pathLength: 0,

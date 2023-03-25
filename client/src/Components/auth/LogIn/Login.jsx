@@ -1,56 +1,33 @@
-export const Login = () => {
-  return (
-    <div className=" flex flex-col gap-y-3 md:px-10 w-full">
-      <h2 className="text-ViewDetails text-[32px] font-semibold">Login</h2>
-      <a href="#" className="underline">
-        Forgot you password
-      </a>
-      <form action="" className="flex flex-col gap-y-3">
-        <input
-          type="email"
-          name="userMail"
-          id="userMail"
-          placeholder="Email"
-          className="outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 bg-transparent"
-        />
-        <input
-          type="password"
-          name="userPassword"
-          id="userPassword"
-          placeholder="Password"
-          className="w-full md:w-[85%] bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
-        />
-        <div className="flex items-center gap-x-2">
-          <input
-            type="checkbox"
-            name="cheboxTermes"
-            id="cheboxTermes"
-            className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
-          />
-          <label htmlFor="cheboxTermes">
-            Keep me logged in - applies to all log in options below. More info
-          </label>
-        </div>
+import axios from "axios";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { UserLogSchema } from "../../../static/validation/loginSchema";
+import { useForm } from "react-hook-form";
 
-        <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
-          <span>Email Login</span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.375 3.5L12.875 8L8.375 12.5M12.25 8H3.125"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </form>
+export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(UserLogSchema),
+  });
+  const onSubmitHandler = async (data) => {
+    try {
+      const { Email, Password } = data;
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/login/${Email}/${Password}`
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmitHandler)}
+      className=" flex flex-col gap-y-3 md:px-10 w-full"
+    >
+      <h2 className="text-ViewDetails text-[32px] font-semibold">Login</h2>
       <div className="flex items-center gap-x-6">
         <button
           name="facebookAuth"
@@ -123,10 +100,62 @@ export const Login = () => {
           </svg>
         </button>
       </div>
+      <p className="font-sembold text-ViewDetails text-xl">OR</p>
+      <a href="#" className="underline">
+        Forgot you password
+      </a>
+      <div action="" className="flex flex-col gap-y-3">
+        <input
+          type="email"
+          name="userMail"
+          id="userMail"
+          placeholder="Email"
+          className="outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 bg-transparent"
+          {...register("Email")}
+        />
+        <input
+          type="password"
+          name="userPassword"
+          id="userPassword"
+          placeholder="Password"
+          className="w-full md:w-[85%] bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+          {...register("Password")}
+        />
+        <div className="flex items-center gap-x-2">
+          <input
+            {...register("CheckTermes")}
+            type="checkbox"
+            name="cheboxTermes"
+            id="cheboxTermes"
+            className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
+          />
+          <label htmlFor="cheboxTermes">
+            Keep me logged in - applies to all log in options below. More info
+          </label>
+        </div>
+      </div>
+      <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
+        <span>Email Login</span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.375 3.5L12.875 8L8.375 12.5M12.25 8H3.125"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
       <p className="text-base font-semibold">
         By clicking 'Log In' you agree to our website KicksClub Terms &
         Conditions, Kicks Privacy Notice and Terms & Conditions.
       </p>
-    </div>
+    </form>
   );
 };

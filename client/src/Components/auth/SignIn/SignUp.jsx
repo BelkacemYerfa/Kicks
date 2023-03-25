@@ -1,6 +1,34 @@
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { UserRegisterSchema } from "../../../static/validation/registerSchema";
+
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(UserRegisterSchema),
+  });
+  const onSubmitHandler = async (data) => {
+    try {
+      if (data.CheckLongTermes) {
+        const response = await axios.post(
+          "http://localhost:5000/api/v1/register",
+          data
+        );
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className=" flex flex-col gap-y-3 md:px-10 w-full ">
+    <form
+      onSubmit={handleSubmit(onSubmitHandler)}
+      className=" flex flex-col gap-y-3 md:px-10 w-full "
+    >
       <h2 className="text-ViewDetails text-[32px] font-semibold">Register</h2>
       <p className="text-ViewDetails font-semibold text-xl">Sign Up With</p>
       <div className="flex items-center gap-x-6">
@@ -77,13 +105,14 @@ const SignUp = () => {
       </div>
       <p className="font-sembold text-ViewDetails text-xl">OR</p>
       <p className="text-[24px] font-semibold text-ViewDetails">Your Name</p>
-      <form action="" className="flex flex-col gap-y-3">
+      <div action="" className="flex flex-col gap-y-3">
         <input
           type="text"
           name="userFirstName"
           id="userFirstName"
           placeholder="FirstName"
           className="outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 bg-transparent"
+          {...register("FirstName")}
         />
         <input
           type="text"
@@ -91,24 +120,8 @@ const SignUp = () => {
           id="userLastName"
           placeholder="LastName"
           className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+          {...register("LastName")}
         />
-        <p className="text-[24px] font-semibold text-ViewDetails">Gender</p>
-        <div className="flex items-center gap-x-2">
-          <input
-            type="checkbox"
-            name="Male"
-            id="Male"
-            className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
-          />
-          <label htmlFor="Male">Male</label>
-          <input
-            type="checkbox"
-            name="Female"
-            id="Female"
-            className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
-          />
-          <label htmlFor="Femal">Female</label>
-        </div>
         <p className="text-[24px] font-semibold text-ViewDetails">
           Login Details
         </p>
@@ -119,6 +132,7 @@ const SignUp = () => {
             id="newUserEmail"
             placeholder="Email"
             className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+            {...register("Email")}
           />
           <input
             type="password"
@@ -126,11 +140,13 @@ const SignUp = () => {
             id="newUserPassword"
             placeholder="Password"
             className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+            {...register("Password")}
           />
         </div>
         <div className="flex flex-col gap-y-5">
           <div className="flex items-center gap-x-2">
             <input
+              {...register("CheckLongTermes")}
               type="checkbox"
               name="SiteTermes"
               id="SiteTermes"
@@ -143,6 +159,7 @@ const SignUp = () => {
           </div>
           <div className="flex items-center gap-x-2">
             <input
+              {...register("CheckLogTermes")}
               type="checkbox"
               name="LogTermes"
               id="LogTermes"
@@ -153,26 +170,26 @@ const SignUp = () => {
             </label>
           </div>
         </div>
-        <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
-          <span>Register</span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.375 3.5L12.875 8L8.375 12.5M12.25 8H3.125"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </form>
-    </div>
+      </div>
+      <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
+        <span>Register</span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.375 3.5L12.875 8L8.375 12.5M12.25 8H3.125"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+    </form>
   );
 };
 
