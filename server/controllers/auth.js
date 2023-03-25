@@ -20,10 +20,7 @@ const LoginFunc = asyncWraper(async (req, res, next) => {
       .json({ message: "Password is incorrect , check your creditenls" });
   }
   const token = await findUser.createJWT();
-  res.cookie("token", token, {
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  });
+  req.session.user_Id = findUser._id + " " + token;
   res.status(200).json({ message: "Login successful" });
   next();
 });
@@ -48,16 +45,12 @@ const RegisterFunc = asyncWraper(async (req, res, next) => {
     Password: newPassword,
   });
   const token = await user.createJWT();
-  res.cookie("token", token, {
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  });
+  req.session.user_Id = findUser._id + " " + token;
   res.redirect("/");
   next();
 });
 
 const LogoutFunc = asyncWraper(async (req, res, next) => {
-  res.clearCookie("token");
   res.redirect("/auth");
 });
 

@@ -15,7 +15,10 @@ export const Login = () => {
     try {
       const { Email, Password } = data;
       const response = await axios.get(
-        `http://localhost:5000/api/v1/login/${Email}/${Password}`
+        `http://localhost:5000/api/v1/login/${Email}/${Password}`,
+        {
+          withCredentials: true,
+        }
       );
       console.log(response);
     } catch (error) {
