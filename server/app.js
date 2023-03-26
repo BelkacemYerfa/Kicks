@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const router = require("./routes/routes");
 const ConnectDb = require("./db/connect");
 const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("passport-local").Strategy;
+const UserSchemaPassport = require("./models/passportUser");
 require("dotenv").config();
 
 app.use(
@@ -25,16 +29,24 @@ app.use(
     secret: "nonesense",
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocal(UserSchemaPassport.authenticate()));
+
+passport.serializeUser(UserSchemaPassport.serializeUser());
+passport.deserializeUser(UserSchemaPassport.deserializeUser());
+
 app.use(express.json());
+app.use(bodyParser.json());
 
 app.use("/api/v1", router);
 
-app.get("/Test", async (req, res) => {
+/* app.get("/Test", async (req, res) => {
   if (!req.session.user_Id) {
     return res.redirect("http://loaclhost:5173/auth");
   }
   res.render("Hello");
-});
+}); */
 
 const Port = process.env.PORT || 5000;
 

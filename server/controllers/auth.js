@@ -1,6 +1,6 @@
 const asyncWraper = require("../middlewares/asyncFunc");
 const UserSchema = require("../models/UserSchema");
-const bcrypt = require("bcrypt");
+const UserSchemaPassport = require("../models/passportUser");
 
 const LoginFunc = asyncWraper(async (req, res, next) => {
   const { Email, Password } = req.params;
@@ -49,8 +49,29 @@ const LogoutFunc = asyncWraper(async (req, res, next) => {
   res.redirect("/auth");
 });
 
+const RegisterUsePassport = asyncWraper(async (req, res, next) => {
+  const { Email, FirstName, LastName, Password } = req.body;
+  if (!Email || !FirstName || !LastName || !Password) {
+    return res
+      .status(400)
+      .json({ message: "Please enter your email and password" });
+  }
+  const findUser = await UserSchemaPassport.findOne({ Email: Email });
+  if (findUser) {
+    return res.status(400).json({ message: "Email already exist" });
+  }
+  const user = await UserSchemaPassport({
+    Email: Email,
+    username: FirstName + " " + LastName,
+  });
+  const newUser = await UserSchemaPassport.register(user, Password);
+  res.status(200).json({ message: "Register successful", newUser: newUser });
+  next();
+});
+
 module.exports = {
   RegisterFunc,
   LoginFunc,
   LogoutFunc,
+  RegisterUsePassport,
 };
