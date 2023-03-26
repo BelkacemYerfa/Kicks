@@ -38,6 +38,21 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+UserSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt(12);
+  this.Password = await bcrypt.hash(this.Password, salt);
+  next();
+}); // Hash password before saving to database
+
+UserSchema.statics.findAndValidate = async function (Email, Password) {
+  const findUser = await this.findOne({ Email });
+  if (!findUser) {
+    return { message: "Email does not exist" };
+  }
+  const isMatch = await bcrypt.compare(Password, findUser.Password);
+  return [isMatch, findUser];
+};
+
 UserSchema.methods.createJWT = async () => {
   const token = await JWT.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,

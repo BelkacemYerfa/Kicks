@@ -9,18 +9,15 @@ const LoginFunc = asyncWraper(async (req, res, next) => {
       .status(400)
       .json({ message: "Please enter your email and password" });
   }
-  const findUser = await UserSchema.findOne({ Email: Email });
-  if (!findUser) {
-    return res.status(400).json({ message: "Email does not exist" });
-  }
-  const isMatch = await bcrypt.compare(Password, findUser.Password);
-  if (!isMatch) {
+  const isMatch = await UserSchema.findAndValidate(Email, Password);
+  if (!isMatch[0]) {
     return res
       .status(401)
       .json({ message: "Password is incorrect , check your creditenls" });
   }
-  const token = await findUser.createJWT();
-  req.session.user_Id = findUser._id + " " + token;
+  const token = await isMatch[1].createJWT(); //refrer to findeduser in the method
+  req.session.token = token;
+  req.session.user_Id = isMatch[1]._id;
   res.status(200).json({ message: "Login successful" });
   next();
 });
@@ -36,16 +33,14 @@ const RegisterFunc = asyncWraper(async (req, res, next) => {
   if (findUser) {
     return res.status(400).json({ message: "Email already exist" });
   }
-  const salt = await bcrypt.genSalt(12);
-  const newPassword = await bcrypt.hash(Password, salt);
   const user = await UserSchema.create({
     userFirstName: FirstName,
     userLastName: LastName,
     Email: Email,
-    Password: newPassword,
+    Password,
   });
   const token = await user.createJWT();
-  req.session.user_Id = findUser._id + " " + token;
+  req.session.user_Id = user._id + " " + token;
   res.redirect("/");
   next();
 });

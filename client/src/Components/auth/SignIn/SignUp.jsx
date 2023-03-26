@@ -13,13 +13,11 @@ const SignUp = () => {
   });
   const onSubmitHandler = async (data) => {
     try {
-      if (data.CheckLongTermes) {
-        const response = await axios.post(
-          "http://localhost:5000/api/v1/register",
-          data
-        );
-        console.log(response);
-      }
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/register",
+        data
+      );
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
