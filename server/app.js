@@ -7,30 +7,54 @@ const ConnectDb = require("./db/connect");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const UserSchemaPassport = require("./models/passportUser");
 require("dotenv").config();
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      secure: false,
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     },
     secret: "nonesense",
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID:
+        "118172967565-eekgvocci2og4qi9ai1uem4329klo1c3.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "/api/v1/auth/google/callback",
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return done(err, user);
+      }); for usersave */
+      done(null, profile);
+    }
+  )
+);
+
+passport.serializeUser(function (user, done) {
+  done(null, user); //for usersave
+});
+
+passport.deserializeUser(function (user, done) {
+  done(null, user); //for usersave
+});
+
 passport.use(new passportLocal(UserSchemaPassport.authenticate()));
 
 passport.serializeUser(UserSchemaPassport.serializeUser());

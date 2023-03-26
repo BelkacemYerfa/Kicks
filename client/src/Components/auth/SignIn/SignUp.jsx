@@ -11,6 +11,9 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(UserRegisterSchema),
   });
+  const handleGoogleAuth = async () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+  };
   const onSubmitHandler = async (data) => {
     try {
       const response = await axios.post(
@@ -53,6 +56,7 @@ const SignUp = () => {
           </svg>
         </button>
         <button
+          onClick={handleGoogleAuth}
           name="googleAuth"
           className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
           id="googleAuth"

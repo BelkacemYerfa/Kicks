@@ -7,13 +7,30 @@ const {
 } = require("../controllers/auth");
 const isLogged = require("../middlewares/authValidator");
 const router = express.Router();
-/* const passport = require("passport");
-const passportUser = require("../models/passportUser"); */
+const passport = require("passport");
+/* const passportUser = require("../models/passportUser"); */
 
 router.route("/register").post(RegisterFunc);
 router.route("/login/:Email/:Password").get(LoginFunc);
 router.route("/logout").get(LogoutFunc);
 router.route("/registerPassport").post(RegisterUsePassport);
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:5173/",
+    failureRedirect: "http://localhost:5173/auth",
+  })
+);
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("http://localhost:5173/auth");
+});
 router.get("/test", isLogged, (req, res) => {
   res.send("hello");
 });

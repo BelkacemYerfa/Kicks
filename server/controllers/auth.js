@@ -41,7 +41,9 @@ const RegisterFunc = asyncWraper(async (req, res, next) => {
   });
   const token = await user.createJWT();
   req.session.user_Id = user._id + " " + token;
-  res.redirect("/");
+  res.status(201).json({
+    message: "Register successful",
+  });
   next();
 });
 
