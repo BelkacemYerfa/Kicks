@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 import lArrow from "../../assets/leftArrow.svg";
 import rArrow from "../../assets/rightArrow.svg";
 import { ProductCategory } from "./ProductCategory";
@@ -25,20 +26,20 @@ export const CategorySection = () => {
     };
   }, []);
   return (
-    <section className="bg-ViewDetails pt-4 w-full rounded-none 2xl:rounded-[2rem]">
+    <section className="w-full rounded-none bg-ViewDetails pt-4 2xl:rounded-[2rem]">
       <div className="flex items-center justify-between px-4 md:px-[80px]">
         <motion.h2
           variants={ParentVaraiants}
           initial="hidden"
           whileInView="visible"
-          className="md:uppercase text-white text-[24px] md:text-[74px] font-semibold"
+          className="text-[24px] font-semibold text-white md:text-[74px] md:uppercase"
         >
           Categories
         </motion.h2>
         <div className="flex items-center gap-x-4">
           <div
-            className={`h-10 w-10 flex items-center justify-center bg-FooterTitle rounded-lg cursor-pointer
-            duration-200 ease-linear opacity-80 hover:opacity-100`}
+            className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-FooterTitle
+            opacity-80 duration-200 ease-linear hover:opacity-100`}
             onClick={() => {
               swiperRef.current.slidePrev();
             }}
@@ -46,8 +47,8 @@ export const CategorySection = () => {
             <img src={lArrow} alt="right arrow" />
           </div>
           <div
-            className="h-10 w-10 flex items-center justify-center bg-FooterTitle rounded-lg cursor-pointer
-             duration-200 ease-linear opacity-80 hover:opacity-100
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-FooterTitle
+             opacity-80 duration-200 ease-linear hover:opacity-100
             "
             onClick={() => {
               swiperRef.current.slideNext();
@@ -57,11 +58,16 @@ export const CategorySection = () => {
           </div>
         </div>
       </div>
-      <div className="mt-6 md:mt-0 pl-4 md:pl-[80px]">
-        <div className="flex items-center h-full w-full rounded-tl-[4rem] overflow-hidden">
+      <div className="mt-6 pl-4 md:mt-0 md:pl-[80px]">
+        <div className="flex h-full w-full items-center overflow-hidden rounded-tl-[4rem]">
           <Swiper
             // install Swiper modules
             slidesPerView={slides}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+            }}
+            modules={[Autoplay]}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}

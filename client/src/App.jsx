@@ -16,7 +16,7 @@ import { FramerTest } from "./Pages/FramerTest";
 export default function App() {
   const user = true;
   return (
-    <div className="font-Rubik bg-BgWebsite min-h-screen w-full ">
+    <div className="min-h-screen w-full bg-BgWebsite font-Rubik ">
       <div className=" flex flex-col items-center justify-center py-[1rem] md:py-[2rem]">
         <Suspense fallback={<div>Loading...</div>}>
           <Router>

@@ -66,14 +66,8 @@
   }
 }
 
-/*Css scrollbar */
-
-::-webkit-scrollbar {
-  width: 0px;
-}
-
 @layer {
   .NavBtns {
-    @apply cursor-pointer p-2 duration-300 ease-in-out hover:bg-PannelBtn hover:text-white w-full rounded-lg;
+    @apply w-full cursor-pointer rounded-lg p-2 duration-300 ease-in-out hover:bg-PannelBtn hover:text-white;
   }
 }

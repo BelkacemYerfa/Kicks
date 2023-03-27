@@ -31,11 +31,11 @@ export const Reviews = () => {
           variants={ParentVaraiants}
           initial="hidden"
           whileInView="visible"
-          className="uppercase text-[24px] md:text-[74px] text-ViewDetails font-semibold "
+          className="text-[24px] font-semibold uppercase text-ViewDetails md:text-[74px] "
         >
           Reviews
         </motion.h2>
-        <button className="uppercase translate-y-0 bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg ">
+        <button className="translate-y-0 rounded-lg bg-ShopBtn p-3 text-sm font-medium uppercase text-white md:py-2 md:px-8 ">
           See All
         </button>
       </div>
