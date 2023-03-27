@@ -5,10 +5,12 @@ const bodyParser = require("body-parser");
 const router = require("./routes/routes");
 const ConnectDb = require("./db/connect");
 const session = require("express-session");
+const sessions = require("cookie-parser");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const UserSchemaPassport = require("./models/passportUser");
+const UserMail = require("./models/authMail");
 require("dotenv").config();
 
 app.use(cors());
@@ -20,11 +22,13 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     },
     secret: "nonesense",
   })
 );
+
+app.use(sessions());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,11 +42,32 @@ passport.use(
       callbackURL: "/api/v1/auth/google/callback",
       passReqToCallback: true,
     },
-    function (request, accessToken, refreshToken, profile, done) {
-      /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return done(err, user);
-      }); for usersave */
-      done(null, profile);
+    async function (request, accessToken, refreshToken, profile, done) {
+      const id = profile.id;
+      const email = profile.email;
+      const firstName = profile.family_name;
+      const lastName = profile.given_name;
+      const picture = profile.picture;
+      const currentUser = await UserMail.findOne({
+        email: email,
+      });
+
+      if (currentUser) {
+        request.session.user_Id = currentUser._id;
+        return done(null, currentUser);
+      }
+      const user = new UserMail({
+        id,
+        email,
+        firstName,
+        lastName,
+        picture,
+        source: "google",
+      });
+      user.save();
+      request.session.user_Id = user._id;
+      console.log(request.session.user_Id);
+      return done(null, user);
     }
   )
 );

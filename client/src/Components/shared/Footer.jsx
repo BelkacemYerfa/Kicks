@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 export const Footer = () => {
   return (
     <footer className="realtive">
-      <section className="pt-6 px-4 pb-16 md:px-[72px] md:py-16 bg-ShopBtn rounded-t-[2rem] md:rounded-t-[3rem] flex flex-col gap-y-8 md:flex-row items-start md:items-center justify-between w-full">
-        <div className="flex flex-col gap-y-4 justify-center w-full md:w-[150%]">
-          <h2 className="uppercase text-[32px] md:text-[48px] font-semibold text-white w-full md:w-[70%]">
+      <section className="flex w-full flex-col items-start justify-between gap-y-8 rounded-t-[2rem] bg-ShopBtn px-4 pt-6 pb-16 md:flex-row md:items-center md:rounded-t-[3rem] md:px-[72px] md:py-16">
+        <div className="flex w-full flex-col justify-center gap-y-4 md:w-[150%]">
+          <h2 className="w-full text-[32px] font-semibold uppercase text-white md:w-[70%] md:text-[48px]">
             Join our KicksPlus Club & get 15% off
           </h2>
-          <p className="font-semibold text-xl text-white">
+          <p className="text-xl font-semibold text-white">
             Sign up for free! Join the community.
           </p>
           <form action="" className="flex items-center gap-x-2">
@@ -17,11 +17,11 @@ export const Footer = () => {
               name="Email"
               id="Email"
               placeholder="Email Address"
-              className="text-white text-xl outline-none w-1/2 bg-transparent rounded-lg py-3 px-3 border border-solid border-white placeholder:text-FooterTitle"
+              className="w-1/2 rounded-lg border border-solid border-white bg-transparent py-3 px-3 text-xl text-white outline-none placeholder:text-FooterTitle"
             />
             <button
               type="submit"
-              className="uppercase text-white px-5 py-4 bg-ViewDetails rounded-lg"
+              className="rounded-lg bg-ViewDetails px-5 py-4 uppercase text-white"
             >
               submit
             </button>
@@ -77,42 +77,42 @@ export const Footer = () => {
           </motion.svg>
         </div>
       </section>
-      <section className="-translate-y-[5%] md:-translate-y-[9%] bg-ViewDetails flex justify-center flex-col pt-6 md:pt-10 rounded-[2rem] md:rounded-[3rem]">
-        <div className="flex gap-y-10 flex-col md:flex-row justify-between px-4 md:px-10">
+      <section className="flex -translate-y-[5%] flex-col justify-center rounded-[2rem] bg-ViewDetails pt-6 md:-translate-y-[9%] md:rounded-[3rem] md:pt-10">
+        <div className="flex flex-col justify-between gap-y-10 px-4 md:flex-row md:px-10">
           <div>
-            <h2 className="text-[36px] text-PannelBtn font-semibold ">
+            <h2 className="text-[36px] font-semibold text-PannelBtn ">
               About us
             </h2>
-            <p className="text-white text-xl font-semibold">
+            <p className="text-xl font-semibold text-white">
               We are the biggest hyperstore in the universe. <br /> We got you
               all cover with our exclusive <br /> collections and latest drops.
             </p>
           </div>
           <div>
-            <h2 className="text-[36px] text-PannelBtn font-semibold ">
+            <h2 className="text-[36px] font-semibold text-PannelBtn ">
               Categories
             </h2>
             <ul className="flex flex-col gap-y-2 p-0">
-              <li className="text-white text-xl font-semibold">Runners</li>
-              <li className="text-white text-xl font-semibold">Sneakers</li>
-              <li className="text-white text-xl font-semibold">BasketBall</li>
-              <li className="text-white text-xl font-semibold">Outdoor</li>
-              <li className="text-white text-xl font-semibold">Golf</li>
-              <li className="text-white text-xl font-semibold">Hiking</li>
+              <li className="text-xl font-semibold text-white">Runners</li>
+              <li className="text-xl font-semibold text-white">Sneakers</li>
+              <li className="text-xl font-semibold text-white">BasketBall</li>
+              <li className="text-xl font-semibold text-white">Outdoor</li>
+              <li className="text-xl font-semibold text-white">Golf</li>
+              <li className="text-xl font-semibold text-white">Hiking</li>
             </ul>
           </div>
           <div>
-            <h2 className="text-[36px] text-PannelBtn font-semibold ">
+            <h2 className="text-[36px] font-semibold text-PannelBtn ">
               Company
             </h2>
             <ul className="flex flex-col gap-y-2 p-0">
-              <li className="text-white text-xl font-semibold">About</li>
-              <li className="text-white text-xl font-semibold">Contact</li>
-              <li className="text-white text-xl font-semibold">Blogs</li>
+              <li className="text-xl font-semibold text-white">About</li>
+              <li className="text-xl font-semibold text-white">Contact</li>
+              <li className="text-xl font-semibold text-white">Blogs</li>
             </ul>
           </div>
           <div>
-            <h2 className="text-[36px] text-PannelBtn font-semibold ">
+            <h2 className="text-[36px] font-semibold text-PannelBtn ">
               Follow Us
             </h2>
             <ul className="flex items-center gap-x-5 p-0">
@@ -175,7 +175,7 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="px-4 md:px-10 md:mt-10 translate-y-[30%] md:translate-y-0 w-full flex items-center justify-center">
+        <div className="flex w-full translate-y-[30%] items-center justify-center px-4 md:mt-10 md:translate-y-0 md:px-10">
           <motion.svg
             initial={{
               opacity: 0,
