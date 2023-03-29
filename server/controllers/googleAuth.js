@@ -49,7 +49,7 @@ const LoggedSeccesfully = (req, res) => {
     success: true,
     message: "successfull",
     user: req.user,
-    session: req.sessionID,
+    session: req.sessionStore.sessions,
   });
 };
 

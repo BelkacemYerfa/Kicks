@@ -15,15 +15,7 @@ router.route("/register").post(RegisterFunc);
 router.route("/login/:Email/:Password").get(LoginFunc);
 router.route("/logout").get(LogoutFunc);
 router.route("/registerPassport").post(RegisterUsePassport);
-router.route("/loginGoogle").get(async (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "successfull",
-    user: req.user,
-    session: req.sessionStore.sessions,
-  });
-  
-});
+router.route("/loginGoogle").get(LoggedSeccesfully);
 router.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -36,6 +28,7 @@ router.get(
     successRedirect: "http://localhost:5173/",
     failureRedirect: "http://localhost:5173/auth",
   })
+  
 );
 router.get("/logout", (req, res) => {
   req.session = null;

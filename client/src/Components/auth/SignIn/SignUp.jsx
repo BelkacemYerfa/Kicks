@@ -2,8 +2,10 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserRegisterSchema } from "../../../static/validation/registerSchema";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -20,6 +22,7 @@ const SignUp = () => {
         "http://localhost:5000/api/v1/register",
         data
       );
+      navigate("/")
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -28,14 +31,14 @@ const SignUp = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className=" flex flex-col gap-y-3 md:px-10 w-full "
+      className=" flex w-full flex-col gap-y-3 md:px-10 "
     >
-      <h2 className="text-ViewDetails text-[32px] font-semibold">Register</h2>
-      <p className="text-ViewDetails font-semibold text-xl">Sign Up With</p>
+      <h2 className="text-[32px] font-semibold text-ViewDetails">Register</h2>
+      <p className="text-xl font-semibold text-ViewDetails">Sign Up With</p>
       <div className="flex items-center gap-x-6">
         <button
           name="facebookAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="facebookAuth"
         >
           <svg
@@ -58,7 +61,7 @@ const SignUp = () => {
         <button
           onClick={handleGoogleAuth}
           name="googleAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="googleAuth"
         >
           <svg
@@ -88,7 +91,7 @@ const SignUp = () => {
         </button>
         <button
           name="appleAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="appleAuth"
         >
           <svg
@@ -105,7 +108,7 @@ const SignUp = () => {
           </svg>
         </button>
       </div>
-      <p className="font-sembold text-ViewDetails text-xl">OR</p>
+      <p className="font-sembold text-xl text-ViewDetails">OR</p>
       <p className="text-[24px] font-semibold text-ViewDetails">Your Name</p>
       <div action="" className="flex flex-col gap-y-3">
         <input
@@ -113,7 +116,7 @@ const SignUp = () => {
           name="userFirstName"
           id="userFirstName"
           placeholder="FirstName"
-          className="outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 bg-transparent"
+          className="rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none"
           {...register("FirstName")}
         />
         <input
@@ -121,7 +124,7 @@ const SignUp = () => {
           name="userLastName"
           id="userLastName"
           placeholder="LastName"
-          className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+          className="w-full rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none "
           {...register("LastName")}
         />
         <p className="text-[24px] font-semibold text-ViewDetails">
@@ -133,7 +136,7 @@ const SignUp = () => {
             name="newUserEmail"
             id="newUserEmail"
             placeholder="Email"
-            className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+            className="w-full rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none "
             {...register("Email")}
           />
           <input
@@ -141,7 +144,7 @@ const SignUp = () => {
             name="newUserPassword"
             id="newUserPassword"
             placeholder="Password"
-            className="w-full bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+            className="w-full rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none "
             {...register("Password")}
           />
         </div>
@@ -152,7 +155,7 @@ const SignUp = () => {
               type="checkbox"
               name="SiteTermes"
               id="SiteTermes"
-              className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
+              className="rounded bg-gray-100 text-ViewDetails focus:ring-ViewDetails "
             />
             <label htmlFor="SiteTermes">
               By clicking 'Log In' you agree to our website KicksClub Terms &
@@ -165,7 +168,7 @@ const SignUp = () => {
               type="checkbox"
               name="LogTermes"
               id="LogTermes"
-              className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
+              className="rounded bg-gray-100 text-ViewDetails focus:ring-ViewDetails "
             />
             <label htmlFor="LogTermes">
               Keep me logged in - applies to all log in options below. More info
@@ -173,7 +176,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
+      <button className="flex w-full items-center justify-between rounded-lg bg-ViewDetails p-4 text-sm font-medium uppercase text-white">
         <span>Register</span>
         <svg
           width="16"

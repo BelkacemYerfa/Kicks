@@ -2,8 +2,10 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserLogSchema } from "../../../static/validation/loginSchema";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -17,6 +19,7 @@ export const Login = () => {
       const response = await axios.get(
         `http://localhost:5000/api/v1/login/${Email}/${Password}`
       );
+      navigate("/");
       console.log(response);
     } catch (error) {
       console.log(error);

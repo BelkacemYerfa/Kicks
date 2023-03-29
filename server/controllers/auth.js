@@ -18,7 +18,13 @@ const LoginFunc = asyncWraper(async (req, res, next) => {
   const token = await isMatch[1].createJWT(); //refrer to findeduser in the method
   req.session.token = token;
   req.session.user_Id = isMatch[1]._id;
-  res.status(200).json({ message: "Login successful" });
+  res
+    .status(200)
+    .json({
+      message: "Login successful",
+      user: isMatch[1],
+      session: req.sessionStore.sessions,
+    });
   next();
 });
 
@@ -43,11 +49,14 @@ const RegisterFunc = asyncWraper(async (req, res, next) => {
   req.session.user_Id = user._id + " " + token;
   res.status(201).json({
     message: "Register successful",
+    user: user,
+    session: req.sessionStore.sessions,
   });
   next();
 });
 
 const LogoutFunc = asyncWraper(async (req, res, next) => {
+  req.session = null;
   res.redirect("/auth");
 });
 
