@@ -7,6 +7,9 @@ import { mediaPhone } from "../../static/mediaQueries";
 import dropSvg from "../../assets/dropdonw.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useFetch from "../../hooks/useFetch";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export const Navigationbar = () => {
   const [Toggle, setToggle] = useState(false);
@@ -28,19 +31,31 @@ export const Navigationbar = () => {
       }
     });
   }, []);
+  const [Auth, setAuth] = useState(false);
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v1/loginGoogle").then((res) => {
+      Object.keys(res.data.session).forEach((key) => {
+        if ("passport" in JSON.parse(res.data.session[key])) {
+          setAuth(JSON.parse(res.data.session[key]).passport);
+          console.log(Auth);
+        }
+        //console.log(JSON.parse(res.data.session[key]));
+      });
+    });
+  }, []);
   return (
-    <nav className="flex items-center duration-300 ease-in-out justify-center w-full">
-      <div className="w-[95%] flex items-center justify-between bg-white rounded-t-3xl md:rounded-3xl p-4 md:p-8">
+    <nav className="flex w-full items-center justify-center duration-300 ease-in-out">
+      <div className="flex w-[95%] items-center justify-between rounded-t-3xl bg-white p-4 md:rounded-3xl md:p-8">
         <div className=" relative flex items-center gap-x-10 font-semibold text-ViewDetails ">
           <div
-            className="md:hidden cursor-pointer flex items-center justify-center h-10 w-10"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center md:hidden"
             onClick={handleToggleState}
           >
             <img src={toggle} className="h-10 w-10" alt="toggle" />
           </div>
-          <ul className="absolute md:relative hidden md:flex items-center flex-col gap-y-3 md:flex-row gap-x-10 m-0">
+          <ul className="absolute m-0 hidden flex-col items-center gap-y-3 gap-x-10 md:relative md:flex md:flex-row">
             <li>
-              <div className="flex flex-col group">
+              <div className="group flex flex-col">
                 <a href="/">New Drops 🔥</a>
                 <div
                   className="h-[2px] w-0 bg-ViewDetails duration-300 ease-in-out
@@ -49,7 +64,7 @@ export const Navigationbar = () => {
               </div>
             </li>
             <li>
-              <div className="flex flex-col group">
+              <div className="group flex flex-col">
                 <div className="flex items-center gap-x-[2px]">
                   <a href="/">Men</a>
                   <img src={dropSvg} alt="" />
@@ -61,7 +76,7 @@ export const Navigationbar = () => {
               </div>
             </li>
             <li>
-              <div className="flex flex-col group">
+              <div className="group flex flex-col">
                 <div className="flex items-center gap-x-[2px]">
                   <a href="/">Woman</a>
                   <img src={dropSvg} alt="" />
@@ -153,16 +168,16 @@ export const Navigationbar = () => {
                 name="Search"
                 id="Search"
                 placeholder="Search..."
-                className={`flex justify-end bg-transparent text-ViewDetails text-2xl font-medium px-3 py-2 
-              rounded-lg duration-300 ease-in-out outline-none  ${
+                className={`flex justify-end rounded-lg bg-transparent px-3 py-2 text-2xl font-medium 
+              text-ViewDetails outline-none duration-300 ease-in-out  ${
                 SearchToggle
-                  ? "border border-solid border-FooterTitle w-full"
+                  ? "w-full border border-solid border-FooterTitle"
                   : "w-0 border-none "
               }`}
               />
             </form>
             <button
-              className="hidden md:flex cursor-pointer items-center justify-center h-10 w-10"
+              className="hidden h-10 w-10 cursor-pointer items-center justify-center md:flex"
               onClick={() => {
                 setSearchToggle(!SearchToggle);
               }}
@@ -172,11 +187,11 @@ export const Navigationbar = () => {
           </div>
           <Link
             to={"/auth"}
-            className="cursor-pointer flex items-center justify-center h-10 w-10"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center"
           >
             <img src={logo} className="h-8 w-8" alt="account logo" />
           </Link>
-          <div className="cursor-pointer bg-PannelBtn w-8 h-8 rounded-full flex items-center justify-center ">
+          <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-PannelBtn ">
             0
           </div>
         </div>
@@ -184,7 +199,7 @@ export const Navigationbar = () => {
       {Toggle && (
         <div
           ref={ToggleDrop}
-          className=" flex justify-center w-full absolute top-[5.5rem] left-0 font-semibold text-ViewDetails"
+          className=" absolute top-[5.5rem] left-0 flex w-full justify-center font-semibold text-ViewDetails"
         >
           <ChoiceDropDown />
         </div>
