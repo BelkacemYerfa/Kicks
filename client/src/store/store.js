@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createNewProduct } from "./createNewProduct";
-import { createNewUser } from "./createNewUser";
+import { createNewProduct } from "../actions/createNewProduct";
+import { createNewUser } from "../actions/createNewUser";
 
 export const store = configureStore({
   reducer: {

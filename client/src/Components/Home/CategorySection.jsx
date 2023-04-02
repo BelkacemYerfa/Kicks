@@ -4,7 +4,7 @@ import lArrow from "../../assets/leftArrow.svg";
 import rArrow from "../../assets/rightArrow.svg";
 import { ProductCategory } from "./ProductCategory";
 import { ProductCat } from "../../static/ProductCat";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ParentVaraiants } from "../../static/motionVariant";
 import "swiper/css";
@@ -14,17 +14,6 @@ import "swiper/css/scrollbar";
 
 export const CategorySection = () => {
   const swiperRef = useRef(null);
-  const [slides, setSlides] = useState(0);
-  const setSlidesPerview = () => {
-    setSlides(window.innerWidth <= 550 ? 1 : window.innerWidth > 720 ? 2 : 0);
-  };
-  useEffect(() => {
-    setSlidesPerview();
-    window.addEventListener("resize", setSlidesPerview);
-    return () => {
-      window.removeEventListener("resize", setSlidesPerview);
-    };
-  }, []);
   return (
     <section className="w-full rounded-none bg-ViewDetails pt-4 2xl:rounded-[2rem]">
       <div className="flex items-center justify-between px-4 md:px-[80px]">
@@ -40,9 +29,7 @@ export const CategorySection = () => {
           <div
             className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-FooterTitle
             opacity-80 duration-200 ease-linear hover:opacity-100`}
-            onClick={() => {
-              swiperRef.current.slidePrev();
-            }}
+            onClick={() => swiperRef.current.slidePrev()}
           >
             <img src={lArrow} alt="right arrow" />
           </div>
@@ -50,19 +37,24 @@ export const CategorySection = () => {
             className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-FooterTitle
              opacity-80 duration-200 ease-linear hover:opacity-100
             "
-            onClick={() => {
-              swiperRef.current.slideNext();
-            }}
+            onClick={() => swiperRef.current.slideNext()}
           >
             <img src={rArrow} alt="left arrow" />
           </div>
         </div>
       </div>
-      <div className="mt-6 pl-4 md:mt-0 md:pl-[80px]">
-        <div className="flex h-full w-full items-center overflow-hidden rounded-tl-[4rem]">
+      <div className="mt-6 pl-0 md:mt-0 md:pl-[80px]">
+        <div className="flex h-full w-full items-center rounded-tl-[4rem] md:overflow-hidden">
           <Swiper
-            // install Swiper modules
-            slidesPerView={slides}
+            slidesPerView={4}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 2,
+              },
+            }}
             loop={true}
             autoplay={{
               delay: 2500,

@@ -11,8 +11,6 @@ const Home = lazy(() => import("./Pages/Home"));
 const AuthPage = lazy(() => import("./Pages/AuthPage"));
 import "./App.css";
 import { FramerTest } from "./Pages/FramerTest";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
 import { useSelector } from "react-redux";
 
 export default function App() {

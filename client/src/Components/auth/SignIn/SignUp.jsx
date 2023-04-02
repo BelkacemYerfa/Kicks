@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserRegisterSchema } from "../../../static/validation/registerSchema";
-import { redirect, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchNewUser } from "../../../store/createNewUser";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchNewUser } from "../../../actions/createNewUser";
 
 const SignUp = () => {
   const navigate = useNavigate();

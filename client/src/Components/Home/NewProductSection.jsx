@@ -1,31 +1,62 @@
 import { ProductCard } from "./ProductCard";
 import { motion } from "framer-motion";
 import { ParentVaraiants } from "../../static/motionVariant";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.css";
 
 export const NewProductSection = () => {
   const Text = "Don't Miss Out New Drops";
 
   return (
     <section className="">
-      <div className="relative flex items-center md:items-end justify-between ">
+      <div className="relative flex items-center justify-between md:items-end ">
         <motion.h3
           variants={ParentVaraiants}
           initial="hidden"
           whileInView="visible"
-          className="md:uppercase text-[24px] md:text-[74px] w-[50%] text-ViewDetails font-semibold "
+          className="w-[50%] text-[24px] font-semibold text-ViewDetails md:text-[74px] md:uppercase "
         >
           {Text}
         </motion.h3>
-        <button className="uppercase translate-y-0 md:-translate-y-[30px] bg-ShopBtn text-white text-sm font-medium p-3 md:py-2 md:px-8 rounded-lg">
+        <button className="translate-y-0 rounded-lg bg-ShopBtn p-3 text-sm font-medium uppercase text-white md:-translate-y-[30px] md:py-2 md:px-8">
           Shop new drops
         </button>
       </div>
-      <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-4 md:gap-y-6">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={8}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        }}
+      >
+        <SwiperSlide>
+          <ProductCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProductCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProductCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProductCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProductCard />
+        </SwiperSlide>
+      </Swiper>
+      <br />
     </section>
   );
 };

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        BgWebsite: "#FAFAFA",
+        BgWebsite: "#f1f1f1",
         PannelBtn: "#FFA52F",
         ViewDetails: "#232321",
         ShopBtn: "#4A69E2",

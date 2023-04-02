@@ -7,6 +7,7 @@ import { mediaPhone } from "../../static/mediaQueries";
 import dropSvg from "../../assets/dropdonw.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Navigationbar = () => {
   const [Toggle, setToggle] = useState(false);
@@ -37,15 +38,7 @@ export const Navigationbar = () => {
             className="flex h-10 w-10 cursor-pointer items-center justify-center md:hidden"
             onClick={handleToggleState}
           >
-            <img
-              onClick={() => {
-                console.log(actions.setUser(10));
-                console.log(state);
-              }}
-              src={toggle}
-              className="h-10 w-10"
-              alt="toggle"
-            />
+            <img src={toggle} className="h-10 w-10" alt="toggle" />
           </div>
           <ul className="absolute m-0 hidden flex-col items-center gap-y-3 gap-x-10 md:relative md:flex md:flex-row">
             <li>

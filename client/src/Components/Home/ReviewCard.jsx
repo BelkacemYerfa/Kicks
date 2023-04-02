@@ -5,11 +5,11 @@ export const ReviewCard = ({
   productReviewed,
 }) => {
   return (
-    <div className="bg-white rounded-[32px] overflow-hidden">
-      <div className="p-4 flex items-center justify-between text-ViewDetails">
+    <div className="overflow-hidden rounded-2xl bg-white md:rounded-[32px]">
+      <div className="flex items-center justify-between p-4 text-ViewDetails">
         <div className="">
           <h3 className="text-2xl font-semibold">{userName || "belkacem"}</h3>
-          <p className="font-normal text-base">
+          <p className="text-base font-normal">
             {userReview || "it's a really good product"}
           </p>
         </div>
@@ -18,11 +18,11 @@ export const ReviewCard = ({
             userProfilePic ||
             "https://www.fredzone.org/wp-content/uploads/2022/02/firefox_IxLgenEuFw-1000x1000.jpg"
           }
-          className="rounded-[32px] h-16 w-16"
+          className="h-16 w-16 rounded-[32px]"
           alt="user profile picture"
         />
       </div>
-      <div className="w-full h-auto">
+      <div className="h-auto w-full">
         <img
           src={
             productReviewed ||

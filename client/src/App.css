@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 /*Css bg animation */
+
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 50%;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: aqua;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
 #ImageBg {
   background-image: url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80");
   background-position: 0px 0px;
