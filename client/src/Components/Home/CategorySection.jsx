@@ -71,9 +71,6 @@ export const CategorySection = () => {
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            onSlideChange={() => {
-              console.log("swiper... ");
-            }}
           >
             {ProductCat.map((product) => {
               return (

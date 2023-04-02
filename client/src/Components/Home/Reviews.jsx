@@ -41,14 +41,7 @@ export const Reviews = () => {
       </div>
       <br />
       <div className="flex items-center gap-x-4 ">
-        <Swiper
-          slidesPerView={slides}
-          spaceBetween={16}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => {
-            console.log("swiper... ");
-          }}
-        >
+        <Swiper slidesPerView={slides} spaceBetween={16}>
           <SwiperSlide>
             <ReviewCard />
           </SwiperSlide>

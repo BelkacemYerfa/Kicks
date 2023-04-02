@@ -18,13 +18,11 @@ const LoginFunc = asyncWraper(async (req, res, next) => {
   const token = await isMatch[1].createJWT(); //refrer to findeduser in the method
   req.session.token = token;
   req.session.user_Id = isMatch[1]._id;
-  res
-    .status(200)
-    .json({
-      message: "Login successful",
-      user: isMatch[1],
-      session: req.sessionStore.sessions,
-    });
+  res.status(200).json({
+    message: "Login successful",
+    user: isMatch[1],
+    session: req.sessionStore.sessions,
+  });
   next();
 });
 

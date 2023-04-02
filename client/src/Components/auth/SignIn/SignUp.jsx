@@ -2,10 +2,12 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserRegisterSchema } from "../../../static/validation/registerSchema";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchNewUser } from "../../../store/createNewUser";
 
 const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,17 +18,10 @@ const SignUp = () => {
   const handleGoogleAuth = async () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
+  const dispatch = useDispatch();
   const onSubmitHandler = async (data) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/register",
-        data
-      );
-      navigate("/")
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(fetchNewUser(data));
+    navigate("/");
   };
   return (
     <form

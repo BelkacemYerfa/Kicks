@@ -1,16 +1,19 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
+  url: String,
   name: String,
   description: String,
-  price: Number,
-  discountPercentage: Number,
-  rating: Number,
+  price: String,
   stock: Number,
   brand: String,
-  category: String,
+  features: Array,
   thumbnail: String,
   images: Array,
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 //check the needed from the design config
 //notes for products :
