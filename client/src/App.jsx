@@ -34,7 +34,7 @@ export default function App() {
               <br />
               <Footer />
               <center>
-                Made By
+                Made By : <span> </span>
                 <Link to="https://github.com/BelkacemYerfa">
                   <u>Belkacem Yerfa</u>
                 </Link>

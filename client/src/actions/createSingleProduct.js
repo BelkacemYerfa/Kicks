@@ -11,7 +11,7 @@ export const fetchSingleProduct = createAsyncThunk(
     const response = await fetch(
       `http://localhost:5000/api/v1/product/${id}`
     ).then((res) => res.json());
-    return response;
+    return response.data;
   }
 );
 
