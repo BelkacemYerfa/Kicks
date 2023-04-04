@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  product: [],
+  products: [],
   loading: false,
 };
 
-const fetchNewProduct = createAsyncThunk(
+const url = "http://localhost:5000/api/v1/newProduct";
+
+export const fetchNewProduct = createAsyncThunk(
   "newProduct/fetchNewProduct",
   async () => {
-    const response = fetch("https://dummyjson.com/products").then((res) =>
-      res.json()
-    );
+    const response = fetch(url).then((res) => res.json());
     return response;
   }
 );
@@ -24,7 +24,7 @@ export const createNewProduct = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchNewProduct.fulfilled, (state, action) => {
-      state.product = action.payload;
+      state.products = action.payload;
       state.loading = false;
     });
   },

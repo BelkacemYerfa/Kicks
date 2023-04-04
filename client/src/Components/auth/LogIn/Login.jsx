@@ -3,9 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { UserLogSchema } from "../../../static/validation/loginSchema";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserLogged } from "../../../actions/createNewUser";
 
 export const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,28 +15,23 @@ export const Login = () => {
   } = useForm({
     resolver: yupResolver(UserLogSchema),
   });
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const onSubmitHandler = async (data) => {
-    try {
-      const { Email, Password } = data;
-      const response = await axios.get(
-        `http://localhost:5000/api/v1/login/${Email}/${Password}`
-      );
-      navigate("/");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(fetchUserLogged(data));
+    navigate("/");
   };
+  console.log(user);
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className=" flex flex-col gap-y-3 md:px-10 w-full"
+      className=" flex w-full flex-col gap-y-3 md:px-10"
     >
-      <h2 className="text-ViewDetails text-[32px] font-semibold">Login</h2>
+      <h2 className="text-[32px] font-semibold text-ViewDetails">Login</h2>
       <div className="flex items-center gap-x-6">
         <button
           name="facebookAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="facebookAuth"
         >
           <svg
@@ -56,7 +53,7 @@ export const Login = () => {
         </button>
         <button
           name="googleAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="googleAuth"
         >
           <svg
@@ -86,7 +83,7 @@ export const Login = () => {
         </button>
         <button
           name="appleAuth"
-          className="w-full flex items-center justify-center border border-solid border-ViewDetails rounded-xl h-16"
+          className="flex h-16 w-full items-center justify-center rounded-xl border border-solid border-ViewDetails"
           id="appleAuth"
         >
           <svg
@@ -103,7 +100,7 @@ export const Login = () => {
           </svg>
         </button>
       </div>
-      <p className="font-sembold text-ViewDetails text-xl">OR</p>
+      <p className="font-sembold text-xl text-ViewDetails">OR</p>
       <a href="#" className="underline">
         Forgot you password
       </a>
@@ -113,7 +110,7 @@ export const Login = () => {
           name="userMail"
           id="userMail"
           placeholder="Email"
-          className="outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 bg-transparent"
+          className="rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none"
           {...register("Email")}
         />
         <input
@@ -121,7 +118,7 @@ export const Login = () => {
           name="userPassword"
           id="userPassword"
           placeholder="Password"
-          className="w-full md:w-[85%] bg-transparent outline-none border border-solid border-ViewDetails rounded-lg py-[10px] px-4 "
+          className="w-full rounded-lg border border-solid border-ViewDetails bg-transparent py-[10px] px-4 outline-none md:w-[85%] "
           {...register("Password")}
         />
         <div className="flex items-center gap-x-2">
@@ -130,14 +127,14 @@ export const Login = () => {
             type="checkbox"
             name="cheboxTermes"
             id="cheboxTermes"
-            className="text-ViewDetails bg-gray-100 rounded focus:ring-ViewDetails "
+            className="rounded bg-gray-100 text-ViewDetails focus:ring-ViewDetails "
           />
           <label htmlFor="cheboxTermes">
             Keep me logged in - applies to all log in options below. More info
           </label>
         </div>
       </div>
-      <button className="p-4 uppercase flex items-center justify-between font-medium text-sm w-full bg-ViewDetails text-white rounded-lg">
+      <button className="flex w-full items-center justify-between rounded-lg bg-ViewDetails p-4 text-sm font-medium uppercase text-white">
         <span>Email Login</span>
         <svg
           width="16"

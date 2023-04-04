@@ -1,4 +1,6 @@
 const express = require("express");
+const router = express.Router();
+const passport = require("passport");
 const {
   RegisterFunc,
   LoginFunc,
@@ -7,8 +9,8 @@ const {
 } = require("../controllers/auth");
 const { LoggedSeccesfully } = require("../controllers/googleAuth");
 const isLogged = require("../middlewares/authValidator");
-const router = express.Router();
-const passport = require("passport");
+const { getShowRowData } = require("../controllers/getShowRowData");
+const { getSingelData } = require("../controllers/getSingelData");
 /* const passportUser = require("../models/passportUser"); */
 
 router.route("/register").post(RegisterFunc);
@@ -28,7 +30,6 @@ router.get(
     successRedirect: "http://localhost:5173/",
     failureRedirect: "http://localhost:5173/auth",
   })
-  
 );
 router.get("/logout", (req, res) => {
   req.session = null;
@@ -36,23 +37,8 @@ router.get("/logout", (req, res) => {
   res.redirect("http://localhost:5173/auth");
 });
 
-/* router.post("/loginPassport", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    const { Email, Password } = req.body;
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
-    }
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      return res.status(200).json({ message: "Login successful" });
-    });
-  })(req, res, next);
-}); */ //same concept as the loginFunc
+router.route("/newProduct").get(getShowRowData);
+router.route("/product/:id").get(getSingelData);
 
 passport.serializeUser(function (user, done) {
   done(null, user); //for usersave

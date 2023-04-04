@@ -4,6 +4,7 @@ import { UserRegisterSchema } from "../../../static/validation/registerSchema";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchNewUser } from "../../../actions/createNewUser";
+import { useEffect } from "react";
 
 const SignUp = () => {
   const navigate = useNavigate();

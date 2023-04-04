@@ -29,7 +29,7 @@ export const Navigationbar = () => {
       }
     });
   }, []);
-
+  const { user } = useSelector((state) => state.user);
   return (
     <nav className="flex w-full items-center justify-center duration-300 ease-in-out">
       <div className="flex w-[95%] items-center justify-between rounded-t-3xl bg-white p-4 md:rounded-3xl md:p-8">
@@ -173,7 +173,7 @@ export const Navigationbar = () => {
             </button>
           </div>
           <Link
-            to={"/auth"}
+            to={user ? "/account" : "/auth"}
             className="flex h-10 w-10 cursor-pointer items-center justify-center"
           >
             <img src={logo} className="h-8 w-8" alt="account logo" />

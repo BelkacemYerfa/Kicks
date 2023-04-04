@@ -3,10 +3,17 @@ import { motion } from "framer-motion";
 import { ParentVaraiants } from "../../static/motionVariant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchNewProduct } from "../../actions/createNewProduct";
 
 export const NewProductSection = () => {
-  const Text = "Don't Miss Out New Drops";
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchNewProduct());
+  }, []);
+  const { products } = useSelector((state) => state.products);
+  console.log(products);
   return (
     <section className="">
       <div className="relative flex items-center justify-between md:items-end ">
@@ -16,7 +23,7 @@ export const NewProductSection = () => {
           whileInView="visible"
           className="w-[50%] text-[24px] font-semibold text-ViewDetails md:text-[74px] md:uppercase "
         >
-          {Text}
+          Don't Miss Out New Drops
         </motion.h3>
         <button className="translate-y-0 rounded-lg bg-ShopBtn p-3 text-sm font-medium uppercase text-white md:-translate-y-[30px] md:py-2 md:px-8">
           Shop new drops
@@ -40,21 +47,17 @@ export const NewProductSection = () => {
           },
         }}
       >
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
+        {products?.data?.map((product) => (
+          <SwiperSlide key={product?.id}>
+            <ProductCard
+              key={product?.id}
+              id={product?.id}
+              thumbnail={product?.thumbnail}
+              name={product?.name}
+              price={product?.price}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <br />
     </section>

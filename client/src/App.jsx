@@ -1,20 +1,16 @@
 import React, { Suspense, lazy, useState } from "react";
 import { Footer } from "./Components/shared/Footer";
 import { Navigationbar } from "./Components/shared/Navigationbar";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const Home = lazy(() => import("./Pages/Home"));
 const AuthPage = lazy(() => import("./Pages/AuthPage"));
 import "./App.css";
 import { FramerTest } from "./Pages/FramerTest";
 import { useSelector } from "react-redux";
+import { PrivateRoutes } from "./private/PrivateRoutes";
+const Product = lazy(() => import("./Pages/Product"));
 
 export default function App() {
-  const [Auth, setAuth] = useState(false);
   const { user } = useSelector((state) => state.user);
   console.log(user);
   return (
@@ -25,19 +21,24 @@ export default function App() {
             <Navigationbar />
             <br />
             <Routes>
+              <Route element={<PrivateRoutes />}>
+                <Route path="/framer" element={<FramerTest />} />
+                <Route path="/product/:id" element={<Product />} />
+              </Route>
               <Route path="/" element={<Home />} />
               <Route path="/auth" element={<AuthPage />} />
-              <Route
-                path="/Test"
-                element={Auth ? <Navigate to="/" /> : <FramerTest />}
-              />
             </Routes>
             <section className="w-[95%] 2xl:w-[85vw]">
               <br />
               <br />
               <br />
               <Footer />
-              <center>Maded By Me</center>
+              <center>
+                Made By
+                <Link to="https://github.com/BelkacemYerfa">
+                  <u>Belkacem Yerfa</u>
+                </Link>
+              </center>
             </section>
           </Router>
         </Suspense>
