@@ -13,7 +13,7 @@ const Product = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
-  }, []);
+  }, [id]);
   console.log(product);
   return (
     <section className="w-[95%] space-y-20">
@@ -28,7 +28,7 @@ const Product = () => {
         images={product?.images}
         url={product?.url}
       />
-      <RelatedSuggestions />
+      <RelatedSuggestions id={id} />
     </section>
   );
 };

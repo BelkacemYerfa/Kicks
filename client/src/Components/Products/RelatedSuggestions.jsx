@@ -1,9 +1,21 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import lArrow from "../../assets/leftArrow.svg";
 import rArrow from "../../assets/rightArrow.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchRelatedProducts } from "../../actions/createRelatedProducts";
+import { ProductCard } from "../Home/ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-const RelatedSuggestions = ({}) => {
+const RelatedSuggestions = ({ id }) => {
   const swiperRef = useRef(null);
+  const { suggestionsProducts } = useSelector(
+    (state) => state.suggestionsProducts
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchRelatedProducts(id));
+  }, [id]);
+  console.log(suggestionsProducts);
   return (
     <section className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -28,6 +40,40 @@ const RelatedSuggestions = ({}) => {
           </div>
         </div>
       </div>
+      <br />
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={16}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        }}
+      >
+        {suggestionsProducts?.map((item, index) => (
+          <SwiperSlide key={index}>
+            <ProductCard
+              key={item?.id}
+              id={item?.id}
+              name={item?.name}
+              thumbnail={item?.thumbnail}
+              price={item?.price}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };

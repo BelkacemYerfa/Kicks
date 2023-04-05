@@ -11,6 +11,7 @@ const { LoggedSeccesfully } = require("../controllers/googleAuth");
 const isLogged = require("../middlewares/authValidator");
 const { getShowRowData } = require("../controllers/getShowRowData");
 const { getSingelData } = require("../controllers/getSingelData");
+const { getSuggestions } = require("../controllers/getSuggestions");
 /* const passportUser = require("../models/passportUser"); */
 
 router.route("/register").post(RegisterFunc);
@@ -39,6 +40,8 @@ router.get("/logout", (req, res) => {
 
 router.route("/newProduct").get(getShowRowData);
 router.route("/product/:id").get(getSingelData);
+
+router.route("/products/recommendations/:id").get(getSuggestions);
 
 passport.serializeUser(function (user, done) {
   done(null, user); //for usersave

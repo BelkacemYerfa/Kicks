@@ -11,13 +11,13 @@ export const ProductCard = ({ id, name, thumbnail, price }) => {
         <motion.div className="relative">
           <div
             className=" absolute left-0 top-0 flex h-[38px] w-[58px] items-center 
-            justify-center rounded-tl-3xl rounded-br-3xl bg-ShopBtn text-xs font-semibold text-white "
+            justify-center rounded-br-3xl rounded-tl-3xl bg-ShopBtn text-xs font-semibold text-white "
           >
             New
           </div>
           <img
             src={`${thumbnail}`}
-            className="h-[250px] w-full rounded-3xl md:h-[334px]"
+            className="h-[250px] w-[155px] rounded-3xl md:h-[334px] md:w-[302px]"
             alt={name}
           />
         </motion.div>
