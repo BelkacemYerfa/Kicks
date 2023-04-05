@@ -3,6 +3,9 @@ import { lazy, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleProduct } from "../actions/createSingleProduct";
 const ProductInfo = lazy(() => import("../Components/Products/ProductInfo"));
+const RelatedSuggestions = lazy(() =>
+  import("../Components/Products/RelatedSuggestions")
+);
 
 const Product = () => {
   const { id } = useParams();
@@ -13,7 +16,7 @@ const Product = () => {
   }, []);
   console.log(product);
   return (
-    <section className="w-[95%]">
+    <section className="w-[95%] space-y-20">
       <ProductInfo
         name={product?.name}
         thumbnail={product?.thumbnail}
@@ -25,6 +28,7 @@ const Product = () => {
         images={product?.images}
         url={product?.url}
       />
+      <RelatedSuggestions />
     </section>
   );
 };

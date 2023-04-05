@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
+import { Link } from "react-router-dom";
+import { Navigation, Pagination } from "swiper";
 import "swiper/swiper.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductInfo = ({
   id,
@@ -16,6 +20,7 @@ const ProductInfo = ({
   url,
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [SelectedImage, setImage] = useState(null);
   const indexCheck = (index) => {
     if (index === 0)
       return "rounded-tl-[48px] md:rouneded-b-0 md:rouneded-tr-0";
@@ -32,13 +37,14 @@ const ProductInfo = ({
     return () => window.removeEventListener("resize", handleResize);
   });
   return (
-    <section className="flex flex-col gap-y-6 gap-x-4 md:flex-row">
+    <section className="flex flex-col gap-x-4 gap-y-6 md:flex-row">
       <div className="flex w-full flex-wrap gap-4 md:w-[60%]">
         {windowWidth > 768 ? (
           images?.map(
             (image, index) =>
               index < 4 && (
                 <img
+                  key={index}
                   src={`${image}`}
                   className={`h-[350px] w-[48%] rounded-2xl md:${indexCheck(
                     index
@@ -48,22 +54,47 @@ const ProductInfo = ({
               )
           )
         ) : (
-          <Swiper slidesPerView={1} loop={true} spaceBetween={16}>
-            {images?.map(
-              (image, index) =>
-                index < 4 && (
-                  <SwiperSlide key={index}>
+          <>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={16}
+              pagination
+              modules={[Pagination]}
+              onSlideChange={(swiper) => {
+                if (SelectedImage) swiper.slideTo(SelectedImage);
+              }}
+            >
+              {images?.map(
+                (image, index) =>
+                  index < 4 && (
+                    <SwiperSlide key={index}>
+                      <img
+                        key={index}
+                        src={`${image}`}
+                        className={`h-[350px] w-full rounded-2xl md:${indexCheck(
+                          index
+                        )} `}
+                        alt={name}
+                      />
+                    </SwiperSlide>
+                  )
+              )}
+            </Swiper>
+            <div className="flex w-full gap-x-2">
+              {images?.map(
+                (image, index) =>
+                  index < 4 && (
                     <img
+                      key={index}
                       src={`${image}`}
-                      className={`h-[350px] w-full rounded-2xl md:${indexCheck(
-                        index
-                      )} `}
+                      className=" h-16 w-16 rounded-lg"
                       alt={name}
+                      onClick={() => setImage(index)}
                     />
-                  </SwiperSlide>
-                )
-            )}
-          </Swiper>
+                  )
+              )}
+            </div>
+          </>
         )}
       </div>
       <div className=" w-full space-y-4 md:w-[40%]">
@@ -115,14 +146,29 @@ const ProductInfo = ({
           <p className="text-base font-normal text-ViewDetails opacity-80">
             {description?.split(":").map((item, index) =>
               index !== description.split(":").length - 1 ? (
-                <span key={index}>
-                  {item}:
-                  <br />
-                </span>
+                index % 2 === 0 ? (
+                  <span key={index}>
+                    {item}:
+                    <br />
+                  </span>
+                ) : (
+                  <span key={index}>
+                    {item}.<br />
+                  </span>
+                )
               ) : (
-                <span key={index}>{item}</span>
+                <span key={index}>{item}.</span>
               )
             )}
+          </p>
+          <br />
+          <p className="text-normal text-base text-ViewDetails opacity-80">
+            For more details ,{" "}
+            <span>
+              <Link to={url} className="font-semibold !text-blue-500 underline">
+                Click Here
+              </Link>
+            </span>
           </p>
         </div>
       </div>
