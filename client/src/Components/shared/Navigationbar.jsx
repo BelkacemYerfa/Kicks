@@ -7,7 +7,7 @@ import { mediaPhone } from "../../static/mediaQueries";
 import dropSvg from "../../assets/dropdonw.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const Navigationbar = () => {
   const [Toggle, setToggle] = useState(false);
@@ -29,7 +29,9 @@ export const Navigationbar = () => {
       }
     });
   }, []);
+
   const { user } = useSelector((state) => state.user);
+
   return (
     <nav className="flex w-full items-center justify-center duration-300 ease-in-out">
       <div className="flex w-[95%] items-center justify-between rounded-t-3xl bg-white p-4 md:rounded-3xl md:p-8">
@@ -40,7 +42,7 @@ export const Navigationbar = () => {
           >
             <img src={toggle} className="h-10 w-10" alt="toggle" />
           </div>
-          <ul className="absolute m-0 hidden flex-col items-center gap-y-3 gap-x-10 md:relative md:flex md:flex-row">
+          <ul className="absolute m-0 hidden flex-col items-center gap-x-10 gap-y-3 md:relative md:flex md:flex-row">
             <li>
               <div className="group flex flex-col">
                 <a href="/">New Drops 🔥</a>
@@ -183,14 +185,14 @@ export const Navigationbar = () => {
           </div>
         </div>
       </div>
-      {Toggle && (
+      {
         <div
           ref={ToggleDrop}
-          className=" absolute top-[5.5rem] left-0 flex w-full justify-center font-semibold text-ViewDetails"
+          className=" absolute left-0 top-[5.5rem] flex w-full justify-center font-semibold text-ViewDetails"
         >
-          <ChoiceDropDown />
+          <ChoiceDropDown Toggle={Toggle} />
         </div>
-      )}
+      }
     </nav>
   );
 };

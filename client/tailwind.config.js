@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        BgWebsite: "#f1f1f1",
         PannelBtn: "#FFA52F",
         ViewDetails: "#232321",
         ShopBtn: "#4A69E2",
         FooterTitle: "#E7E7E3",
+        TrendingBtn: "#F4F2F2",
       },
       fontFamily: {
         Rubik: "Rubik, sans-serif",

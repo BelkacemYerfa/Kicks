@@ -3,21 +3,24 @@ import { motion } from "framer-motion";
 export const Footer = () => {
   return (
     <footer className="realtive">
-      <section className="flex w-full flex-col items-start justify-between gap-y-8 rounded-t-[2rem] bg-ShopBtn px-4 pt-6 pb-16 md:flex-row md:items-center md:rounded-t-[3rem] md:px-[72px] md:py-16">
+      <section className="flex w-full flex-col items-start justify-between gap-y-8 rounded-t-[2rem] bg-ShopBtn px-4 pb-16 pt-6 md:flex-row md:items-center md:rounded-t-[3rem] md:px-[72px] md:py-16">
         <div className="flex w-full flex-col justify-center gap-y-4 md:w-[150%]">
-          <h2 className="w-full text-[32px] font-semibold uppercase text-white md:w-[70%] md:text-[48px]">
+          <h2 className="w-full text-[32px] font-semibold uppercase text-white md:w-[80%] md:text-[48px]">
             Join our KicksPlus Club & get 15% off
           </h2>
           <p className="text-xl font-semibold text-white">
             Sign up for free! Join the community.
           </p>
-          <form action="" className="flex items-center gap-x-2">
+          <form
+            action=""
+            className="flex w-full items-center justify-between gap-x-2 md:w-1/2 md:justify-normal"
+          >
             <input
               type="email"
               name="Email"
               id="Email"
               placeholder="Email Address"
-              className="w-1/2 rounded-lg border border-solid border-white bg-transparent py-3 px-3 text-xl text-white outline-none placeholder:text-FooterTitle"
+              className="w-full rounded-lg border border-solid border-white bg-transparent px-3 py-3 text-xl text-white outline-none placeholder:text-FooterTitle"
             />
             <button
               type="submit"
@@ -27,7 +30,7 @@ export const Footer = () => {
             </button>
           </form>
         </div>
-        <div className="w-full">
+        <div className="flex w-full md:mt-10">
           <motion.svg
             initial={{
               pathLength: 0,
@@ -38,6 +41,7 @@ export const Footer = () => {
             transition={{
               duration: 1,
             }}
+            className="text-[12vw]"
             width="351"
             height="88"
             viewBox="0 0 351 88"
@@ -175,7 +179,7 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="flex w-full translate-y-[30%] items-center justify-center px-4 md:mt-10 md:translate-y-0 md:px-10">
+        <div className=" flex w-full translate-y-[30%] items-center justify-center px-4 md:mt-10 md:translate-y-0 md:px-10">
           <motion.svg
             initial={{
               opacity: 0,
@@ -192,6 +196,7 @@ export const Footer = () => {
               left: -10,
               right: 10,
             }}
+            className="-z-10"
             width="1200"
             height="200"
             viewBox="0 0 1262 208"
