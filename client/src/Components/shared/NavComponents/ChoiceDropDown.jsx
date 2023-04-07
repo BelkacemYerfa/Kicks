@@ -6,21 +6,33 @@ export const ChoiceDropDown = ({ Toggle }) => {
       height: 0,
       transition: {
         when: "afterChildren",
+        staggerChildren: 0.2,
       },
     },
     visible: {
       height: "auto",
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
       },
     },
     exit: {
       height: 0,
-      transition: {
-        when: "afterChildren",
-        staggerChildren: 0.3,
-      },
+    },
+  };
+
+  const ListVariants = {
+    hidden: {
+      opacity: 0,
+      y: 15,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+    exit: {
+      opacity: 0,
+      y: 15,
     },
   };
 
@@ -31,19 +43,22 @@ export const ChoiceDropDown = ({ Toggle }) => {
           variants={parentVaraints}
           initial="hidden"
           animate="visible"
-          exit={{
-            height: 0,
-          }}
+          exit="exit"
           transition={{
             duration: 0.5,
-
             ease: "easeInOut",
           }}
           className="z-10 flex w-[95%] flex-col items-start gap-y-3 rounded-b-3xl bg-white p-4 shadow-lg "
         >
-          <motion.p className="NavBtns">New Drops 🔥</motion.p>
-          <motion.p className="NavBtns">Men</motion.p>
-          <motion.p className="NavBtns">Woman</motion.p>
+          <motion.p variants={ListVariants} className="NavBtns">
+            New Drops 🔥
+          </motion.p>
+          <motion.p variants={ListVariants} className="NavBtns">
+            Men
+          </motion.p>
+          <motion.p variants={ListVariants} className="NavBtns">
+            Woman
+          </motion.p>
         </motion.ul>
       )}
     </AnimatePresence>
