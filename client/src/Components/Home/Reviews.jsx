@@ -5,25 +5,6 @@ import { motion } from "framer-motion";
 import { ParentVaraiants } from "../../static/motionVariant";
 
 export const Reviews = () => {
-  const [slides, setSlides] = useState(0);
-  const setSlidesPerview = () => {
-    setSlides(
-      window.innerWidth <= 550
-        ? 1
-        : window.innerWidth <= 720
-        ? 2
-        : window.innerWidth > 720
-        ? 3
-        : 0
-    );
-  };
-  useEffect(() => {
-    setSlidesPerview();
-    window.addEventListener("resize", setSlidesPerview);
-    return () => {
-      window.removeEventListener("resize", setSlidesPerview);
-    };
-  }, []);
   return (
     <section className="">
       <div className="flex items-center justify-between">
@@ -35,13 +16,27 @@ export const Reviews = () => {
         >
           Reviews
         </motion.h2>
-        <button className="translate-y-0 rounded-lg bg-ShopBtn p-3 text-sm font-medium uppercase text-white md:py-2 md:px-8 ">
+        <button className="translate-y-0 rounded-lg bg-ShopBtn p-3 text-sm font-medium uppercase text-white md:px-8 md:py-2 ">
           See All
         </button>
       </div>
       <br />
       <div className="flex items-center gap-x-4 ">
-        <Swiper slidesPerView={slides} spaceBetween={16}>
+        <Swiper
+          slidesPerView={3}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            480: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+          }}
+          spaceBetween={16}
+        >
           <SwiperSlide>
             <ReviewCard />
           </SwiperSlide>

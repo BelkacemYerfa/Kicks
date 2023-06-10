@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
-    <footer className="realtive">
+    <footer className="">
       <section className="flex w-full flex-col items-start justify-between gap-y-8 rounded-t-[2rem] bg-ShopBtn px-4 pb-16 pt-6 md:flex-row md:items-center md:rounded-t-[3rem] md:px-[72px] md:py-16">
         <div className="flex w-full flex-col justify-center gap-y-4 md:w-[150%]">
           <h2 className="w-full text-[32px] font-semibold uppercase text-white md:w-[80%] md:text-[48px]">

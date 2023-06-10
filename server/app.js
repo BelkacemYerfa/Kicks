@@ -5,6 +5,8 @@ const router = require("./routes/routes");
 const ConnectDb = require("./db/connect");
 const session = require("express-session");
 const sessions = require("cookie-parser");
+const productSchema = require("./models/productSchema");
+
 const passport = require("passport");
 require("dotenv").config();
 

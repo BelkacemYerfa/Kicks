@@ -28,20 +28,18 @@ export default function App() {
               </Route>
               <Route path="/" element={<Home />} />
               <Route path="/auth" element={<AuthPage />} />
-              <Route path="/search" element={<SearchFiltring />} />
             </Routes>
-            <section className="w-[95%] 2xl:w-[85vw]">
-              <br />
-              <br />
-              <br />
+            <br />
+            <br />
+            <br />
+            <section className=" w-[95%] 2xl:w-[85vw]">
               <Footer />
               <center>
-                Made By :{" "}
+                Made By :
                 <span>
-                  {" "}
                   <Link to="https://github.com/BelkacemYerfa">
                     <u>Belkacem Yerfa</u>
-                  </Link>{" "}
+                  </Link>
                 </span>
               </center>
             </section>
