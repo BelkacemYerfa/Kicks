@@ -19,7 +19,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3",
+    "mongoose": "^7.3.4",
     "nodemon": "^2.0.21",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
