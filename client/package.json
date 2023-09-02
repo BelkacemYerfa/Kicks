@@ -36,7 +36,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.7",
     "react-loading-skeleton": "^3.2.0",
-    "react-redux": "^8.0.5",
+    "react-redux": "^8.1.1",
     "react-router-dom": "^6.9.0",
     "swiper": "^9.1.1",
     "yup": "^1.0.2"
